@@ -6,8 +6,7 @@
 
 ## General Info
 This browser based web application to ...
-* Hi, my name is Sam and I like sandwhiches.
-*Hi im sam b and im tired
+* Hi im sam b and im tired
 * Hi, my name is SamVH and I like sandwhiches and am from POCO.
 	
 ## Technologies
