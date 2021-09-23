@@ -7,8 +7,12 @@
 ## General Info
 This browser based web application to ...
 * Hi, my name is Sam and I like sandwhiches.
+<<<<<<< HEAD
 * Hi im sam b and im tired
 * Hi, my name is SamVH and I like sandwhiches and am from POCO.
+=======
+* Hi my name is Andy and im struggling.
+>>>>>>> 54bb6b0 (added one line intro to README file for Andy)
 	
 ## Technologies
 Technologies used for this project:
