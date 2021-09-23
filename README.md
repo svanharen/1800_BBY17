@@ -6,6 +6,7 @@
 
 ## General Info
 This browser based web application to ...
+* Hi, my name is Sam and I like sandwhiches.
 	
 ## Technologies
 Technologies used for this project:
