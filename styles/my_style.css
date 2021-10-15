@@ -6,3 +6,13 @@
     width: 90%;
     height: auto;
 }
+.container{
+    padding: 30px;
+
+}
+.col-3{
+    text-align: center;
+    padding: 10px;
+    font-size: large;
+    border: 3px solid grey;
+}
