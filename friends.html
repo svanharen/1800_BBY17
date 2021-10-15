@@ -17,7 +17,7 @@
 
     <body>
         <!--Top nav bar-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
             <div class="container-fluid">
                 <a href="./settings.html"><img alt=""  src="images/gear-fill.svg" class="navbar-brand btn-link" width="100%" height="auto" ></a>
                 <a href="./friends.html"><img alt=""  src="images/people-fill.svg" class="navbar-brand" href="#" width="100%" height="auto"></a>
@@ -25,6 +25,91 @@
                 <a href="./share.html"><img alt=""  src="images/share-fill.svg" class="navbar-brand" href="#" width="100%" height="auto"></a>
             </div>
         </nav>
+        <p id="Friends" class="text-center pt-5">Friends</p>
+
+        <!--Sort by and add-->
+        <div class="text-center pb-3">
+            <div class="btn-group mx-auto" role="group" aria-label="Button group with nested dropdown">
+                <button type="button" class="btn btn-primary">Add Friend</button>
+
+                <div class="btn-group" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Sort By:
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <li><a class="dropdown-item" href="#">Low to High</a></li>
+                    <li><a class="dropdown-item" href="#">High to Low</a></li>
+                </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--FRIEND!!  -->
+        <div class="container" id="friendList">
+            <div class="row">
+                <div class="col">
+                    <img src="./images/friend-placeholder.png" width="65vw" height="auto">
+                </div>
+                <div class="col">
+                    <h1>Sam B</h1>
+                    <p>Score: 20000</p>
+                </div>
+            </div>
+            <div class="row pb-3"></div>
+            <div class="row">
+                <div class="col">
+                    <img src="./images/friend-placeholder.png" width="65vw" height="auto">
+                </div>
+                <div class="col">
+                    <h1>Sam VH</h1>
+                    <p>Score: 12342</p>
+                </div>
+            </div>
+            <div class="row pb-3"></div>
+            <div class="row">
+                <div class="col">
+                    <img src="./images/friend-placeholder.png" width="65vw" height="auto">
+                </div>
+                <div class="col">
+                    <h1>Andy</h1>
+                    <p>Score: 11346</p>
+                </div>
+            </div>
+            <div class="row pb-3"></div>
+            <div class="row">
+                <div class="col">
+                    <img src="./images/friend-placeholder.png" width="65vw" height="auto">
+                </div>
+                <div class="col">
+                    <h1>John</h1>
+                    <p>Score: 1113</p>
+                </div>
+            </div>
+            <div class="row pb-3"></div>
+            <div class="row">
+                <div class="col">
+                    <img src="./images/friend-placeholder.png" width="65vw" height="auto">
+                </div>
+                <div class="col">
+                    <h1>Joe</h1>
+                    <p>Score: 123</p>
+                </div>
+
+            </div>
+            <div class="row pb-3"></div>
+            <div class="row">
+                <div class="col">
+                    <img src="./images/friend-placeholder.png" width="65vw" height="auto">
+                </div>
+                <div class="col">
+                    <h1>Frank</h1>
+                    <p>Score: 2</p>
+                </div>
+
+            </div>
+        </div>
+
+
 
         <!--Bottom nav bar-->
         <nav class="navbar fixed-bottom navbar-light bg-light">

@@ -6,3 +6,11 @@
     width: 90%;
     height: auto;
 }
+#Friends{
+    font-size: 7vh;
+}
+#friendList .row:nth-child(2n+1) {
+    border: 1px solid black;
+    margin-left: 2vw;
+    margin-right: 2vw;
+}
