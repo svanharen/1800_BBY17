@@ -45,6 +45,7 @@ h2{
     border-color: black;
     border-width: 3px;
     background-color: darkred;
+    color: black;
 }
 .inputBox::placeholder{
     color: rgb(0, 0, 0);
@@ -54,4 +55,7 @@ h2{
 }
 #inputtitle{
     color: darkred;
+}
+.content{
+    background-color: gray;
 }
