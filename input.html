@@ -26,48 +26,46 @@
             </div>
         </nav>
         <!--Input Areas-->
-        <div class = "container">
-            <div class="row">
+        <div class = "container inputPage">
+            <div class="row pt-5 pb-4">
                 <div class="col align-content-md-center">
-                    <h2>Input Area</h2>
+                    <h2 id="inputtitle">Input a New Purchase</h2>
                 </div>
 
             </div>
             <div class ="row justify-content-center">
-                <div class = "col-3">
-                    What item did you purchase?
+                <div class = "col-6 ">
+                   <p class="inputTitles">What item did you purchase?</p>
                 </div>
                 <div class = "col-6">
-                    <div class = "mb-3">
-                        <label for="itemInput" class="form-label">Item Purchased</label>
-                        <input type ="text" class="form-control" id="form-control1" placeholder="Input Item Here">
+                    <div class = "mb-3 pt-3 text-dark">
+                        <!-- <label for="itemInput" class="form-label">Item Purchased</label> -->
+                        <input type ="text" class="form-control inputBox  btn-danger" id="form-control1" placeholder="Input Item Here">
                     </div>
                 </div>
             </div>
             <div class = "row justify-content-center">
-                <div class = "col-3">
-                    Where did you purchase this item from?
-                </div>
                 <div class = "col-6">
-                    <label for="itemInput" class="form-label">Where Item was Purchased</label>
-                    <input type ="text" class="form-control" id="form-control2" placeholder="Input Store Name">
+                   <p class="inputTitles">Where did you purchase this item from?</p>
+                </div>
+                <div class = "col-6 pt-3">
+                    <!-- <label for="itemInput" class="form-label">Where Item was Purchased</label> -->
+                    <input type ="text" class="form-control inputBox  btn-danger" id="form-control2" placeholder="Input Store Name">
                 </div>
             </div>
             <div class = "row justify-content-center">
-                <div class = "col-3">
-                    How much did it cost?
-                </div>
                 <div class = "col-6">
-                    <label for="itemInput" class="form-label">Cost (dollars)</label>
-                    <input type ="text" class="form-control" id="form-control3" placeholder="Input Cost">
+                    <p class="inputTitles">How much did it cost?</p>
+                </div>
+                <div class = "col-6 pt-3">
+                    <!-- <label for="itemInput" class="form-label">Cost (dollars)</label> -->
+                    <input type ="number" class="form-control inputBox  btn-danger" id="form-control3" placeholder="Input Cost ($)">
                 </div>
             </div>
-            <div class = "row justify-content-center">
-                <div class = "col-2"></div>
-                <div class="col-8">
-                    <button type="button" class="btn btn-secondary btn-lg">Submit Purchase</button>
-                </div>
-                <div class="col-2"></div>
+            <div class = "row center">
+                    <button type="button" class="btn btn-lg btn-danger submitButton">Submit Purchase</button>
+                    <div class="pb-5"></div>
+                    <div class="pb-3"></div>
             </div>
 
         </div>
