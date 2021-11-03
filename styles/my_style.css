@@ -6,6 +6,16 @@
     width: 90%;
     height: auto;
 }
+.container{
+    padding: 30px;
+
+}
+.col-3{
+    text-align: center;
+    padding: 10px;
+    font-size: large;
+    border: 3px solid grey;
+}
 #Friends{
     font-size: 7vh;
 }
@@ -13,4 +23,39 @@
     border: 1px solid black;
     margin-left: 2vw;
     margin-right: 2vw;
+}
+h2{
+    font-size: 8vw;
+    text-align: center;
+}
+.inputTitles{
+    font-size: 5vw;
+    padding-bottom: 10vh;
+    font-weight: bold;
+}
+#center{
+    text-align: center;
+}
+.submitButton{
+    background-color: black;
+    color: grey;
+}
+.inputBox{
+    border-style: solid;
+    border-color: black;
+    border-width: 3px;
+    background-color: darkred;
+    color: black;
+}
+.inputBox::placeholder{
+    color: rgb(0, 0, 0);
+}
+.inputPage{
+    background-color: grey;
+}
+#inputtitle{
+    color: darkred;
+}
+.content{
+    background-color: gray;
 }

@@ -6,6 +6,7 @@
 
 ## General Info
 This browser based web application to ...
+* Hi, my name is SamVH and I like sandwhiches and am from POCO.
 
 
 
