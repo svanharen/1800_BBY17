@@ -20,6 +20,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+  <script src="scripts/firebaseAPI.js"></script>
 
   <title>Notifications</title>
   <link rel="stylesheet" href="styles/my_style.css" />
@@ -69,7 +70,8 @@
                 </div>
                 <div class="col-auto">
                   <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="alert1" checked="" />
+                    <input type="radio" class="custom-control-input" id="alert1" name="notificationPeriod"
+                      onclick="Alert1()" />
                     <span class="custom-control-label"></span>
                   </div>
                 </div>
@@ -85,7 +87,8 @@
                 </div>
                 <div class="col-auto">
                   <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="alert2" />
+                    <input type="radio" class="custom-control-input" id="alert2" name="notificationPeriod"
+                      onclick="Alert2()" />
                     <span class="custom-control-label"></span>
                   </div>
                 </div>
@@ -106,7 +109,8 @@
                 </div>
                 <div class="col-auto">
                   <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="alert3" checked="" />
+                    <input type="radio" class="custom-control-input" id="alert3" checked="" name="notificationType"
+                      onclick="Alert3()" />
                     <span class="custom-control-label"></span>
                   </div>
                 </div>
@@ -122,7 +126,8 @@
                 </div>
                 <div class="col-auto">
                   <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="alert4" checked="" />
+                    <input type="radio" class="custom-control-input" id="alert4" name="notificationType"
+                      onclick="Alert4()" />
                     <span class="custom-control-label"></span>
                   </div>
                 </div>
@@ -139,7 +144,8 @@
                 </div>
                 <div class="col-auto">
                   <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="alert5" />
+                    <input type="radio" class="custom-control-input" id="alert5" name="notificationType"
+                      onclick="Alert5()" />
                     <span class="custom-control-label"></span>
                   </div>
                 </div>
@@ -164,7 +170,88 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous">
   </script>
-  <script src="scripts/firebaseAPI.js"></script>
+  <script>
+    function setSettings() {
+      firebase.auth().onAuthStateChanged(user => {
+        // Check if user is signed in:
+        if (user) {
+          // Do something for the current logged-in user here:
+          console.log(user.uid);
+          //go to the correct user document by referencing to the user uid
+          notifications = db.collection("users").doc(user.uid);
+          //get the document for current user.
+          notifications.get()
+            .then(function (notify_type) {
+              var user_setting = notify_type.data().notificationReminder;
+              console.log(user_setting);
+              if (user_setting == 0) {
+                document.getElementById("alert1").checked = true;
+              } else {
+                document.getElementById("alert2").checked = true;
+              }
+
+            });
+          notifications.get()
+            .then(function (notify_type) {
+              var user_setting = notify_type.data().notificationType;
+              console.log(user_setting);
+              if (user_setting == 0) {
+                document.getElementById("alert3").checked = true;
+              } else if (user_setting == 1) {
+                document.getElementById("alert4").checked = true;
+              } else {
+                document.getElementById("alert5").checked = true;
+              }
+
+            })
+        }
+      });
+    }
+    setSettings();
+    // Notification time period vvvvvvvvvvvvv
+    function Alert1() {
+      firebase.auth().onAuthStateChanged(user => {
+          set2 = db.collection("users").doc(user.uid);
+          set2.update({
+            notificationReminder: 0
+          });
+      });
+    }
+    function Alert2() {
+      firebase.auth().onAuthStateChanged(user => {
+          set2 = db.collection("users").doc(user.uid);
+          set2.update({
+            notificationReminder: 1
+          });
+      });
+    }
+    // Notification type vvvvvvvvvvvvvvvvvvv
+    function Alert3() {
+      firebase.auth().onAuthStateChanged(user => {
+          set2 = db.collection("users").doc(user.uid);
+          set2.update({
+            notificationType: 0
+          });
+      });
+    }
+    function Alert4() {
+      firebase.auth().onAuthStateChanged(user => {
+          set2 = db.collection("users").doc(user.uid);
+          set2.update({
+            notificationType: 1
+          });
+      });
+    }
+    function Alert5() {
+      firebase.auth().onAuthStateChanged(user => {
+          set2 = db.collection("users").doc(user.uid);
+          set2.update({
+            notificationType: 2
+          });
+      });
+    }
+  </script>
+
 </body>
 
 </html>
