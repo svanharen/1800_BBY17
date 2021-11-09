@@ -1,61 +1,75 @@
-#bottom-nav{
+#bottom-nav {
     padding-left: 20%;
     padding-right: 20%;
 }
-#titleImage{
+
+#titleImage {
     width: 90%;
     height: auto;
 }
-.container{
+
+.container {
     padding: 30px;
 
 }
-.col-3{
+
+.col-3 {
     text-align: center;
     padding: 10px;
     font-size: large;
     border: 3px solid grey;
 }
-#Friends{
+
+#Friends {
     font-size: 7vh;
 }
+
 #friendList .row:nth-child(2n+1) {
     border: 1px solid black;
     margin-left: 2vw;
     margin-right: 2vw;
 }
-h2{
+
+h2 {
     font-size: 8vw;
     text-align: center;
 }
-.inputTitles{
+
+.inputTitles {
     font-size: 5vw;
     padding-bottom: 10vh;
     font-weight: bold;
 }
-#center{
+
+#center {
     text-align: center;
 }
-.submitButton{
+
+.submitButton {
     background-color: black;
     color: grey;
 }
-.inputBox{
+
+.inputBox {
     border-style: solid;
     border-color: black;
     border-width: 3px;
     background-color: rgb(214, 0, 0);
     color: black;
 }
-.inputBox::placeholder{
+
+.inputBox::placeholder {
     color: rgb(0, 0, 0);
 }
-.inputPage{
+
+.inputPage {
     background-color: grey;
 }
-#inputtitle{
+
+#inputtitle {
     color: rgb(185, 0, 0);
 }
-.content{
+
+.content {
     background-color: gray;
 }

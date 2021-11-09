@@ -1,211 +1,146 @@
 <!DOCTYPE html>
 
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF"
-      crossorigin="anonymous"
-    />
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      <!-- Firebase 8 CDNs-->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
-          </script>
-      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous" />
 
-    <title>Notifications</title>
-    <link rel="stylesheet" href="styles/my_style.css" />
-    <link
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-      rel="stylesheet"
-    />
-  </head>
+  <!-- Firebase 8 CDNs-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
 
-  <body>
-    <!--Top nav bar-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a href="./index.html"
-          ><img
-            alt=""
-            src="images/gear-fill.svg"
-            class="navbar-brand btn-link"
-            width="100%"
-            height="auto"
-        /></a>
-        <a href="./friends.html"
-          ><img
-            alt=""
-            src="images/people-fill.svg"
-            class="navbar-brand"
-            href="#"
-            width="100%"
-            height="auto"
-        /></a>
-        <a href="./leaderboard.html"
-          ><img
-            alt=""
-            src="images/reception-4.svg"
-            class="navbar-brand"
-            href="#"
-            width="100%"
-            height="auto"
-        /></a>
-        <a href="./share.html"
-          ><img
-            alt=""
-            src="images/share-fill.svg"
-            class="navbar-brand"
-            href="#"
-            width="100%"
-            height="auto"
-        /></a>
-      </div>
-    </nav>
+  <title>Notifications</title>
+  <link rel="stylesheet" href="styles/my_style.css" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+</head>
 
-    <!-- NOTIFICATION PANEL -->
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12 col-lg-10 col-xl-8 mx-auto">
-          <h2 class="h3 mb-4 page-title">Settings</h2>
-          <div class="my-4">
-            <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  id="contact-tab"
-                  data-toggle="tab"
-                  href="#contact"
-                  role="tab"
-                  aria-controls="contact"
-                  aria-selected="false"
-                  >Notifications</a
-                >
-              </li>
-            </ul>
-            <h5 class="mb-0 mt-5">Notifications Settings</h5>
-            <p>Select notification you want to receive</p>
-            <hr class="my-4" />
-            <strong class="mb-0">Reminders</strong>
-            <p>Notifications to remind when to input spending data.</p>
-            <div class="list-group mb-5 shadow">
-              <div class="list-group-item">
-                <div class="row align-items-center">
-                  <div class="col">
-                    <strong class="mb-0">Daily Reminder</strong>
-                    <p class="text-muted mb-0">
-                      Will send a notfication at the same time everyday.
-                    </p>
-                  </div>
-                  <div class="col-auto">
-                    <div class="custom-control custom-switch">
-                      <input
-                        type="checkbox"
-                        class="custom-control-input"
-                        id="alert1"
-                        checked=""
-                      />
-                      <span class="custom-control-label"></span>
-                    </div>
-                  </div>
+<body>
+  <!--Top nav bar-->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a href="./index.html"><img alt="" src="images/gear-fill.svg" class="navbar-brand btn-link" width="100%"
+          height="auto" /></a>
+      <a href="./friends.html"><img alt="" src="images/people-fill.svg" class="navbar-brand" href="#" width="100%"
+          height="auto" /></a>
+      <a href="./leaderboard.html"><img alt="" src="images/reception-4.svg" class="navbar-brand" href="#" width="100%"
+          height="auto" /></a>
+      <a href="./share.html"><img alt="" src="images/share-fill.svg" class="navbar-brand" href="#" width="100%"
+          height="auto" /></a>
+    </div>
+  </nav>
+
+  <!-- NOTIFICATION PANEL -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+        <h2 class="h3 mb-4 page-title">Settings</h2>
+        <div class="my-4">
+          <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                aria-controls="contact" aria-selected="false">Notifications</a>
+            </li>
+          </ul>
+          <h5 class="mb-0 mt-5">Notifications Settings</h5>
+          <p>Select notification you want to receive</p>
+          <hr class="my-4" />
+          <strong class="mb-0">Reminders</strong>
+          <p>Notifications to remind when to input spending data.</p>
+          <div class="list-group mb-5 shadow">
+            <div class="list-group-item">
+              <div class="row align-items-center">
+                <div class="col">
+                  <strong class="mb-0">Daily Reminder</strong>
+                  <p class="text-muted mb-0">
+                    Will send a notfication at the same time everyday.
+                  </p>
                 </div>
-              </div>
-              <div class="list-group-item">
-                <div class="row align-items-center">
-                  <div class="col">
-                    <strong class="mb-0">Weekly Reminder</strong>
-                    <p class="text-muted mb-0">
-                      Will send a notification once a week.
-                    </p>
-                  </div>
-                  <div class="col-auto">
-                    <div class="custom-control custom-switch">
-                      <input
-                        type="checkbox"
-                        class="custom-control-input"
-                        id="alert2"
-                      />
-                      <span class="custom-control-label"></span>
-                    </div>
+                <div class="col-auto">
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="alert1" checked="" />
+                    <span class="custom-control-label"></span>
                   </div>
                 </div>
               </div>
             </div>
-            <hr class="my-4" />
-            <strong class="mb-0">Notification Type</strong>
-            <p>Please enable the type of system alert you will get.</p>
-            <div class="list-group mb-5 shadow">
-              <div class="list-group-item">
-                <div class="row align-items-center">
-                  <div class="col">
-                    <strong class="mb-0">Lock Sceen Alerts</strong>
-                    <p class="text-muted mb-0">
-                      Will display on the lock screen of your mobile device.
-                    </p>
-                  </div>
-                  <div class="col-auto">
-                    <div class="custom-control custom-switch">
-                      <input
-                        type="checkbox"
-                        class="custom-control-input"
-                        id="alert3"
-                        checked=""
-                      />
-                      <span class="custom-control-label"></span>
-                    </div>
+            <div class="list-group-item">
+              <div class="row align-items-center">
+                <div class="col">
+                  <strong class="mb-0">Weekly Reminder</strong>
+                  <p class="text-muted mb-0">
+                    Will send a notification once a week.
+                  </p>
+                </div>
+                <div class="col-auto">
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="alert2" />
+                    <span class="custom-control-label"></span>
                   </div>
                 </div>
               </div>
-              <div class="list-group-item">
-                <div class="row align-items-center">
-                  <div class="col">
-                    <strong class="mb-0">Banner Alerts</strong>
-                    <p class="text-muted mb-0">
-                      Will display anytime and anywhere as a banner.
-                    </p>
-                  </div>
-                  <div class="col-auto">
-                    <div class="custom-control custom-switch">
-                      <input
-                        type="checkbox"
-                        class="custom-control-input"
-                        id="alert4"
-                        checked=""
-                      />
-                      <span class="custom-control-label"></span>
-                    </div>
+            </div>
+          </div>
+          <hr class="my-4" />
+          <strong class="mb-0">Notification Type</strong>
+          <p>Please enable the type of system alert you will get.</p>
+          <div class="list-group mb-5 shadow">
+            <div class="list-group-item">
+              <div class="row align-items-center">
+                <div class="col">
+                  <strong class="mb-0">Lock Sceen Alerts</strong>
+                  <p class="text-muted mb-0">
+                    Will display on the lock screen of your mobile device.
+                  </p>
+                </div>
+                <div class="col-auto">
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="alert3" checked="" />
+                    <span class="custom-control-label"></span>
                   </div>
                 </div>
               </div>
-              <div class="list-group-item">
-                <div class="row align-items-center">
-                  <div class="col">
-                    <strong class="mb-0">Notification Center Alerts</strong>
-                    <p class="text-muted mb-0">
-                      Will display in the notification center along with all
-                      other alerts.
-                    </p>
+            </div>
+            <div class="list-group-item">
+              <div class="row align-items-center">
+                <div class="col">
+                  <strong class="mb-0">Banner Alerts</strong>
+                  <p class="text-muted mb-0">
+                    Will display anytime and anywhere as a banner.
+                  </p>
+                </div>
+                <div class="col-auto">
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="alert4" checked="" />
+                    <span class="custom-control-label"></span>
                   </div>
-                  <div class="col-auto">
-                    <div class="custom-control custom-switch">
-                      <input
-                        type="checkbox"
-                        class="custom-control-input"
-                        id="alert5"
-                      />
-                      <span class="custom-control-label"></span>
-                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="list-group-item">
+              <div class="row align-items-center">
+                <div class="col">
+                  <strong class="mb-0">Notification Center Alerts</strong>
+                  <p class="text-muted mb-0">
+                    Will display in the notification center along with all
+                    other alerts.
+                  </p>
+                </div>
+                <div class="col-auto">
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="alert5" />
+                    <span class="custom-control-label"></span>
                   </div>
                 </div>
               </div>
@@ -214,35 +149,22 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <!--Bottom nav bar-->
-    <nav class="navbar fixed-bottom navbar-light bg-light">
-      <div class="container-fluid pb-2" id="bottom-nav">
-        <a href="./input.html"
-          ><img
-            alt=""
-            src="images/money.svg"
-            class="navbar-brand"
-            href="#"
-            width="140%"
-            height="auto"
-        /></a>
-        <a href="./game.html"
-          ><img
-            alt=""
-            src="images/controller.svg"
-            class="navbar-brand"
-            href="#"
-            width="140%"
-            height="auto"
-        /></a>
-      </div>
-    </nav>
+  <!--Bottom nav bar-->
+  <nav class="navbar fixed-bottom navbar-light bg-light">
+    <div class="container-fluid pb-2" id="bottom-nav">
+      <a href="./input.html"><img alt="" src="images/money.svg" class="navbar-brand" href="#" width="140%"
+          height="auto" /></a>
+      <a href="./game.html"><img alt="" src="images/controller.svg" class="navbar-brand" href="#" width="140%"
+          height="auto" /></a>
+    </div>
+  </nav>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
-      crossorigin="anonymous"></script>
-      <script src="scripts/firebaseAPI.js"></script>
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous">
+  </script>
+  <script src="scripts/firebaseAPI.js"></script>
+</body>
+
 </html>
