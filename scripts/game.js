@@ -56,9 +56,18 @@ function start() {
   characterX = middlePosX;
   ctx.imageSmoothingEnabled = false;
   //goes and starts the first animation frame
-  window.requestAnimationFrame(loop);
+  window.requestAnimationFrame(waiting);
 }
+function waiting(){
+  if(mouseButton == 1){
+    window.requestAnimationFrame(loop);
+  } else {
+    window.requestAnimationFrame(waiting);
+  }
 
+  ctx.drawImage(backgroundImage, 0, backgroundPosition, canvas.width * 1.5, canvas.height);
+  ctx.drawImage(image, characterX, 650, 55, 80);
+}
 
 
 function loop(timeStamp) {
@@ -91,6 +100,8 @@ function update() {
   //clear the window to not get funky overlay
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   updateBackground();
+
+  //updates the character
   if (mouseButton == 1) {
     updateCharacter();
   }
@@ -113,6 +124,7 @@ function updateEnemy() {
 
 }
 
+//infinite scrolling background
 function updateBackground() {
   ctx.drawImage(backgroundImage, 0, backgroundPosition, canvas.width * 1.5, canvas.height);
   ctx.drawImage(backgroundImage2, 0, backgroundPosition2, canvas.width * 1.5, canvas.height);
