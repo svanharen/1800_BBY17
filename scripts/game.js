@@ -11,7 +11,7 @@ function getScore() {
       currentUserScore.get()
         .then(function (userscore) {
           var user_Score = userscore.data().highscore;
-          console.log(user_Score);
+         // console.log(user_Score);
           //method #1:  insert with html only
           localStorage.setItem('highscore', user_Score);
           //method #2:  insert using jquery
@@ -35,10 +35,14 @@ let backgroundPosition2 = -800;
 let enemy = [];
 let image = new Image();
 image.src = './images/cartoon-rocket.png';
+let off = new Image();
+off.src = './images/off.png';
 let backgroundImage = new Image();
 backgroundImage.src = './images/backgroundImage.jpg';
 let backgroundImage2 = new Image();
 backgroundImage2.src = './images/backgroundImage.jpg';
+let gameTitle = new Image();
+gameTitle.src = './images/gameTitle.png';
 window.onload = start;
 
 //startup things
@@ -64,9 +68,9 @@ function waiting(){
   } else {
     window.requestAnimationFrame(waiting);
   }
-
   ctx.drawImage(backgroundImage, 0, backgroundPosition, canvas.width * 1.5, canvas.height);
-  ctx.drawImage(image, characterX, 650, 55, 80);
+  ctx.drawImage(off, characterX, 650, 55, 80);
+  ctx.drawImage(gameTitle, 37.5, 300, 300, 225);
 }
 
 
@@ -120,7 +124,52 @@ function updateCharacter() {
   }
 }
 
+let gapCap = 20;
+let gap = 0;
+let red = new Image();
+red.src = './images/red.png';
+let green = new Image();
+green.src = './images/green.png';
+let blue = new Image();
+blue.src = './images/blue.png';
+virusSpeed = 2;
+let randomColor = 0;
 function updateEnemy() {
+ // console.log(gap);
+  gap++;
+  if(gap == gapCap){
+    random = Math.random() * canvas.width;
+    randomSize = Math.random() * 50 + 25;
+    randomColor = Math.random();
+    console.log(randomColor);
+    if(randomColor < 1){
+      randomColor = 1;
+    } else if (randomColor < 2){
+      randomColor = 2;
+    } else {
+      randomColor = 3;
+    }
+    console.log(randomColor);
+    enemy.push({x: random, y: -100, w: randomSize, h: randomSize, c: randomColor});
+    gapCap = Math.random() * 45;
+  }
+
+  for(let i = 0; i < enemy.length; i++){
+    let b = enemy[i];
+    //check for colisions
+    if(b.y > canvas.height){
+      enemy.splice(i, 1);
+      console.log("hi");
+    }
+
+    if(b.c == 1){
+      ctx.drawImage(red, b.x, b.y += virusSpeed, b.w, b.h);
+    } else if (b.c = 2){
+      ctx.drawImage(green, b.x, b.y += virusSpeed, b.w, b.h);
+    } else {
+      ctx.drawImage(blue, b.x, b.y += virusSpeed, b.w, b.h);
+    }
+  }
 
 }
 
