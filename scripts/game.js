@@ -30,7 +30,15 @@ let mouseX;
 let middlePosX;
 let characterX;
 let mouseButton;
-let dpi;
+let backgroundPosition = 0;
+let backgroundPosition2 = -800;
+let enemy = [];
+let image = new Image();
+image.src = './images/cartoon-rocket.png';
+let backgroundImage = new Image();
+backgroundImage.src = './images/backgroundImage.jpg';
+let backgroundImage2 = new Image();
+backgroundImage2.src = './images/backgroundImage.jpg';
 window.onload = start;
 
 //startup things
@@ -82,23 +90,38 @@ function mouseUp(e) {
 function update() {
   //clear the window to not get funky overlay
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  updateCharacter();
-}
-
-
-function updateCharacter() {
-
-  //sets the character position based on the input
+  updateBackground();
   if (mouseButton == 1) {
-    if (mouseX < (canvas.width / 2) && characterX > 0) {
-      characterX -= 2;
-    } else if (mouseX >= (canvas.width / 2) && characterX <= canvas.width - 15) {
-      characterX += 2;
-    }
+    updateCharacter();
   }
-  let image = new Image();
-  image.src = './images/cartoon-rocket.png';
   ctx.drawImage(image, characterX, 650, 55, 80);
 
+  updateEnemy();
+  //setTimeout(update, 1);
+}
+
+//sets the character position based on the input
+function updateCharacter() {
+  if (mouseX < (canvas.width / 2) && characterX > 0) {
+    characterX -= 2;
+  } else if (mouseX >= (canvas.width / 2) && characterX <= canvas.width - 15) {
+    characterX += 2;
+  }
+}
+
+function updateEnemy() {
+
+}
+
+function updateBackground() {
+  ctx.drawImage(backgroundImage, 0, backgroundPosition, canvas.width * 1.5, canvas.height);
+  ctx.drawImage(backgroundImage2, 0, backgroundPosition2, canvas.width * 1.5, canvas.height);
+  backgroundPosition += 0.25;
+  backgroundPosition2 += 0.25;
+  if(backgroundPosition >= 800){
+    backgroundPosition = -800;
+  }
+  if(backgroundPosition2 >= 800){
+    backgroundPosition2 = -800;
+  }
 }
