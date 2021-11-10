@@ -73,3 +73,8 @@ h2 {
 .content {
     background-color: gray;
 }
+
+#game{
+    width: 100vw;
+    height: 85vh;
+}
