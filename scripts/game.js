@@ -132,14 +132,13 @@ let green = new Image();
 green.src = './images/green.png';
 let blue = new Image();
 blue.src = './images/blue.png';
-virusSpeed = 2;
+virusSpeed = 1;
 let randomColor = 0;
 function updateEnemy() {
- // console.log(gap);
-  gap++;
-  if(gap == gapCap){
-    random = Math.random() * canvas.width;
-    randomSize = Math.random() * 50 + 25;
+ console.log(gapCap);
+   gap++;
+  if(gap % 150 === 0){
+    randomSize = Math.random() * 50 + 35;
     randomColor = Math.random();
     console.log(randomColor);
     if(randomColor < 1){
@@ -150,6 +149,7 @@ function updateEnemy() {
       randomColor = 3;
     }
     console.log(randomColor);
+    random = Math.random() * (canvas.width - randomSize);
     enemy.push({x: random, y: -100, w: randomSize, h: randomSize, c: randomColor});
     gapCap = Math.random() * 45;
   }
