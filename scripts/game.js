@@ -1,7 +1,6 @@
 //GET HIGHSCORE VVVVVVVVVVVVV
 function getScore() {
   firebase.auth().onAuthStateChanged(user => {
-    // Check if user is signed in:
     if (user) {
       // Do something for the current logged-in user here:
       console.log(user.uid);
@@ -12,10 +11,7 @@ function getScore() {
         .then(function (userscore) {
           var user_Score = userscore.data().highscore;
          // console.log(user_Score);
-          //method #1:  insert with html only
           localStorage.setItem('highscore', user_Score);
-          //method #2:  insert using jquery
-          //$("#score-goes-here").text(user_Score); //using jquery
         })
     }
   });
