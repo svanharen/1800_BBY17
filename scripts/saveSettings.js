@@ -1,5 +1,6 @@
-
 function getSettings() {
+    let loadedSettings = 0;
+    let loadedSettings2 = 0;
     firebase.auth().onAuthStateChanged(user => {
         // Check if user is signed in:
         if (user) {
@@ -11,14 +12,15 @@ function getSettings() {
             notifications.get()
                 .then(function (notify_type) {
                     var user_setting = notify_type.data().notificationReminder;
-                    console.log(user_setting);
                     if (user_setting == 0) {
                         localStorage.setItem('radio1', 1);
                         localStorage.setItem('radio2', 0);
+                        loadedSettings = 1;
                         //document.getElementById("alert1").checked = true;
                     } else {
                         localStorage.setItem('radio2', 1);
                         localStorage.setItem('radio1', 0);
+                        loadedSettings = 1;
                         //document.getElementById("alert2").checked = true;
                     }
 
@@ -31,26 +33,34 @@ function getSettings() {
                         localStorage.setItem('radio3', 1);
                         localStorage.setItem('radio4', 0);
                         localStorage.setItem('radio5', 0);
+                        loadedSettings2 = 1;
                         //document.getElementById("alert3").checked = true;
                     } else if (user_setting == 1) {
                         localStorage.setItem('radio3', 0);
                         localStorage.setItem('radio4', 1);
                         localStorage.setItem('radio5', 0);
+                        loadedSettings2 = 1;
                         //document.getElementById("alert4").checked = true;
                     } else {
                         localStorage.setItem('radio3', 0);
                         localStorage.setItem('radio4', 0);
                         localStorage.setItem('radio5', 1);
+                        loadedSettings2 = 1;
                         //document.getElementById("alert5").checked = true;
                     }
-                })
+                }).then(function () {
+                    try {
+                        setSettings();
+                    } catch (error) {
 
+                    }
+                });
         }
     });
 }
 
 function setSettings() {
-    getSettings();
+    console.log(localStorage.getItem('radio1'));
     if (localStorage.getItem('radio1') == 1) {
         document.getElementById("alert1").checked = true;
     } else {
@@ -72,7 +82,11 @@ function Alert1() {
         set2.update({
             notificationReminder: 0
         });
+        localStorage.setItem('radio1', 1);
+        localStorage.setItem('radio2', 0);
+        // getSettings();
     });
+
 }
 
 function Alert2() {
@@ -81,6 +95,8 @@ function Alert2() {
         set2.update({
             notificationReminder: 1
         });
+        localStorage.setItem('radio2', 1);
+        localStorage.setItem('radio1', 0);
     });
 }
 // Notification type vvvvvvvvvvvvvvvvvvv
@@ -90,6 +106,10 @@ function Alert3() {
         set2.update({
             notificationType: 0
         });
+        localStorage.setItem('radio3', 1);
+        localStorage.setItem('radio4', 0);
+        localStorage.setItem('radio5', 0);
+        //  getSettings();
     });
 }
 
@@ -99,6 +119,10 @@ function Alert4() {
         set2.update({
             notificationType: 1
         });
+        localStorage.setItem('radio3', 0);
+        localStorage.setItem('radio4', 1);
+        localStorage.setItem('radio5', 0);
+        // getSettings();
     });
 }
 
@@ -108,5 +132,9 @@ function Alert5() {
         set2.update({
             notificationType: 2
         });
+        localStorage.setItem('radio3', 0);
+        localStorage.setItem('radio4', 0);
+        localStorage.setItem('radio5', 1);
+        // getSettings();
     });
 }

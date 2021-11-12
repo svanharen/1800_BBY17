@@ -50,7 +50,7 @@ h2 {
     color: grey;
 }
 
-.inputBox {
+.inputStyle {
     border-style: solid;
     border-color: black;
     border-width: 3px;
@@ -58,7 +58,7 @@ h2 {
     color: black;
 }
 
-.inputBox::placeholder {
+.inputStyle::placeholder {
     color: rgb(0, 0, 0);
 }
 
