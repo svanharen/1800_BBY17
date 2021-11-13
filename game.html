@@ -39,26 +39,23 @@
     </div>
   </nav>
 
-    <!--High Score-->
-    <div class="position-fixed">
-      <p class="pt-2">High score: <span id="score-goes-here"></span></p>
-    </div>
-
-    <!-- Game canvas -->
-    <div class="canvasDiv" width="100vw" height="100vh">
-      <canvas id="game" width="375" height="800"></canvas>
-    </div>
+  <!-- Game canvas -->
+  <div class="canvasDiv" width="100vw" height="100vh">
+    <canvas id="game" width="375" height="812"></canvas>
+  </div>
 
 
   <!--Bottom nav bar-->
-  <nav class="navbar fixed-bottom navbar-light bg-light">
-    <div class="container-fluid pb-2" id="bottom-nav">
-      <a href="./input.html"><img alt="" src="images/money.svg" class="navbar-brand" href="#" width="140%"
-          height="auto" /></a>
-      <a href="./index.html"><img alt="" src="images/controller.svg" class="navbar-brand" href="#" width="140%"
-          height="auto" /></a>
-    </div>
-  </nav>
+  <div id="navBar">
+    <nav class="navbar fixed-bottom navbar-light bg-light">
+      <div class="container-fluid pb-2" id="bottom-nav">
+        <a href="./input.html"><img alt="" src="images/money.svg" class="navbar-brand" href="#" width="140%"
+            height="auto" /></a>
+        <a href="./index.html"><img alt="" src="images/controller.svg" class="navbar-brand" href="#" width="140%"
+            height="auto" /></a>
+      </div>
+    </nav>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous">
@@ -71,9 +68,6 @@
     getScore();
   </script>
 
-  <script>
-    document.getElementById("score-goes-here").innerText = localStorage.getItem('highscore'); //using javascript
-  </script>
 </body>
 
 </html>
