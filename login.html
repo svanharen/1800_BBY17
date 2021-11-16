@@ -66,13 +66,13 @@
     </div>
   </nav>
   <!--Login-->
-  <div class="container">
-    <h1 class="display-4">Welcome to BBY17's Web App</h1>
-    <h1 class="display-4">Let's Login!</h1>
+  <div class="content">
+    <div class="container">
+      <h1 class="display-4">Welcome to BBY17's Web App</h1>
+    </div>
+    <div id="firebaseui-auth-container"></div>
+    <div id="loader">Loading...</div>
   </div>
-  <div id="firebaseui-auth-container"></div>
-  <div id="loader">Loading...</div>
-
   <!--Bottom nav bar-->
   <nav class="navbar fixed-bottom navbar-dark bg-dark">
     <div class="container-fluid pb-2" id="bottom-nav">
@@ -128,7 +128,7 @@
                 work: 0,
                 budget: 0
               });
-              db.collection("powers").doc(user.uid)
+            db.collection("powers").doc(user.uid)
               .set({
                 power1: 0,
                 power2: 0,
@@ -142,7 +142,7 @@
         uiShown: function () {
           // The widget is rendered.
           // Hide the loader.
-          document.getElementById("loader").style.display = "";
+          document.getElementById("loader").style.display = "none";
         },
       },
       // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
