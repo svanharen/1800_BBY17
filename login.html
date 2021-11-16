@@ -116,6 +116,17 @@
               .catch(function (error) {
                 console.log("Error adding new user: " + error);
               });
+            db.collection("history").doc(user.uid)
+              .set({
+                food: 0,
+                drink: 0,
+                shopping: 0,
+                transportation: 0,
+                school: 0,
+                entertainment: 0,
+                work: 0,
+                budget: 0
+              })
           } else {
             return true;
           }
