@@ -77,11 +77,23 @@
           <hr class="my-4" />
           <strong class="mb-0">Time period</strong> <br>
           <div class="btn-group pt-3" role="group" aria-label="Time Period">
-            <input type="radio" class="btn-check s" name="btnradio" id="month" autocomplete="off" checked>
+            <input type="radio" class="btn-check s" name="btnradio" id="month" autocomplete="off" checked
+              onclick="Alert6()">
             <label class="btn buttonStyle1 btn-success" for="month">1 month</label>
-            <input type="radio" class="btn-check" name="btnradio" id="twoweeks" autocomplete="off">
+            <input type="radio" class="btn-check" name="btnradio" id="twoweeks" autocomplete="off" onclick="Alert7()">
             <label class="btn buttonStyle1 btn-success" for="twoweeks">2 weeks</label>
           </div>
+          <hr class="my-4" />
+          <strong class="mb-0">Budget</strong> <br>
+          <div class="pb-3"></div>
+          <input type="number" class="form-control buttonStyle1 btn-success" id="totalBudget" placeholder="$$$">
+          <div class="pb-5"></div>
+          <div class="pb-5 text-center">
+            <button type="button" class="btn btn-lg btn-secondary buttonStyle2" onclick="save()">Save</button>
+          </div>
+          <p class="text-center" id="saved"></p>
+          <div class="pb-5"></div>
+          <div class="pb-5"></div>
         </div>
       </div>
     </div>
@@ -111,6 +123,9 @@
     integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous">
   </script>
   <script src="scripts/saveSettings.js"></script>
+  <script type="text/javascript">
+    setSettings2();
+  </script>
 
 </body>
 

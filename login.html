@@ -108,7 +108,8 @@
                 email: user.email, //with authenticated user's ID (user.uid)
                 highscore: 0,
                 notificationReminder: 0,
-                notificationType: 0
+                notificationType: 0,
+                timePeriod: 0
               }).then(function () {
                 console.log("New user added to firestore");
                 window.location.assign("index.html"); //re-direct to index.html after signup

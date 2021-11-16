@@ -55,6 +55,22 @@ function getSettings() {
 
                     }
                 });
+            notifications.get()
+                .then(function (budget) {
+                    var user_setting = budget.data().timePeriod;
+                    if (user_setting == 0) {
+                        localStorage.setItem('budgetButton1', 1);
+                        localStorage.setItem('budgetButton2', 0);
+                    } else {
+                        localStorage.setItem('budgetButton1', 0);
+                        localStorage.setItem('budgetButton2', 1);
+                    }
+
+                });
+            budgetDB = db.collection("history").doc(user.uid);
+            budgetDB.get().then(function (budget) {
+                localStorage.setItem('budget', budget.data().budget);
+            });
         }
     });
 }
@@ -73,6 +89,16 @@ function setSettings() {
     } else {
         document.getElementById("alert5").checked = true;
     }
+}
+
+function setSettings2() {
+    if (localStorage.getItem('budgetButton1') == 1) {
+        document.getElementById("month").checked = true;
+    } else {
+        document.getElementById("twoweeks").checked = true;
+    }
+    console.log(localStorage.getItem('budget'))
+    document.getElementById("totalBudget").value = localStorage.getItem('budget');
 }
 //updates to the firebase when you press the different radio buttons
 // Notification time period vvvvvvvvvvvvv
@@ -137,4 +163,38 @@ function Alert5() {
         localStorage.setItem('radio5', 1);
         // getSettings();
     });
+}
+
+function Alert6() {
+    localStorage.setItem("budgetButton1", 1);
+    localStorage.setItem("budgetButton2", 0);
+}
+
+function Alert7() {
+    localStorage.setItem("budgetButton1", 0);
+    localStorage.setItem("budgetButton2", 1);
+}
+
+function save() {
+    firebase.auth().onAuthStateChanged(user => {
+        set1 = db.collection("users").doc(user.uid);
+        if (localStorage.getItem("budgetButton1") == 1) {
+            set1.update({
+                timePeriod: 0
+            });
+        } else {
+            set1.update({
+                timePeriod: 1
+            });
+        }
+        set2 = db.collection("history").doc(user.uid);
+        newbudget = parseFloat(document.getElementById("totalBudget").value);
+        console.log(newbudget);
+        set2.update({
+            budget: newbudget
+        });
+        localStorage.setItem('budget', newbudget);
+
+    });
+    document.getElementById("saved").textContent = "Saved!";
 }
