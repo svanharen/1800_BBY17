@@ -91,7 +91,7 @@ h2 {
     border-style: solid !important;
     border-color: rgb(238, 255, 7) !important;
     border-width: 2px !important;
-    background-color: rgb(0, 194, 58) !important;
+    background-color: rgb(0, 194, 58);
     color: black !important;
 }
 

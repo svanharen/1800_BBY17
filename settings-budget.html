@@ -10,11 +10,6 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous" />
-  <!-- Bootstrap FirebaseUI CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
-
 
   <!-- Firebase 8 CDNs-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -27,63 +22,82 @@
   <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
   <script src="scripts/firebaseAPI.js"></script>
 
-
-  <!-- Link to the api keys for your firebase project -->
-  <script src="scripts/firebaseAPI.js"></script>
-
-  <title>Login</title>
+  <title>Notifications</title>
   <link rel="stylesheet" href="styles/my_style.css" />
-  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
-  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 
 <body>
   <!--Top nav bar-->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white"
+      <a href="./index.html"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white"
           class="bi navbar-brand bi-gear-fill" viewbox="0 0 16 16">
           <path
             d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
         </svg></a>
-      <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white"
+      <a href="./friends.html"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white"
           class="bi navbar-brand bi-people-fill" viewbox="0 0 16 16">
           <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
           <path fill-rule="evenodd"
             d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z" />
           <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
         </svg></a>
-      <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white"
+      <a href="./leaderboard.html"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white"
           class="bi navbar-brand bi-reception-4" viewbox="0 0 16 16">
           <path
             d="M0 11.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-5zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-8zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-11z" />
         </svg></a>
-      <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white"
+      <a href="./share.html"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white"
           class="bi navbar-brand bi-share-fill" viewbox="0 0 16 16">
           <path
             d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z" />
         </svg></a>
     </div>
   </nav>
-  <!--Login-->
-  <div class="container">
-    <h1 class="display-4">Welcome to BBY17's Web App</h1>
-    <h1 class="display-4">Let's Login!</h1>
+
+  <!-- NOTIFICATION PANEL -->
+  <div class="container content">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+        <h2 class="h3 mb-4 page-title mt-5">Settings</h2>
+        <div class="my-4">
+          <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active but buttonStyle2" id="notification-tab" data-toggle="tab" href="./settings.html"
+                role="tab" aria-controls="contact" aria-selected="false">Notifications</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link but buttonStyle2" id="budget-tab" data-toggle="tab" href="#contact" role="tab"
+                aria-controls="contact" aria-selected="false">Budget</a>
+            </li>
+          </ul>
+          <h5 class="mb-0 mt-5">Budget Settings</h5>
+          <p>Set your budget</p>
+          <hr class="my-4" />
+          <strong class="mb-0">Time period</strong> <br>
+          <div class="btn-group pt-3" role="group" aria-label="Time Period">
+            <input type="radio" class="btn-check s" name="btnradio" id="month" autocomplete="off" checked>
+            <label class="btn buttonStyle1 btn-success" for="month">1 month</label>
+            <input type="radio" class="btn-check" name="btnradio" id="twoweeks" autocomplete="off">
+            <label class="btn buttonStyle1 btn-success" for="twoweeks">2 weeks</label>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div id="firebaseui-auth-container"></div>
-  <div id="loader">Loading...</div>
 
   <!--Bottom nav bar-->
   <nav class="navbar fixed-bottom navbar-dark bg-dark">
     <div class="container-fluid pb-2" id="bottom-nav">
-      <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white"
+      <a href="./input.html"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white"
           class="bi navbar-brand bi-coin" viewbox="0 0 16 16">
           <path
             d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z" />
           <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
           <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z" />
         </svg></a>
-      <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white"
+      <a href="./game.html"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white"
           class="bi navbar-brand bi-controller" viewbox="0 0 16 16">
           <path
             d="M11.5 6.027a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm2.5-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm-6.5-3h1v1h1v1h-1v1h-1v-1h-1v-1h1v-1z" />
@@ -93,76 +107,11 @@
     </div>
   </nav>
 
-
-  <!--Taken from Demo08-->
-  <script>
-    var ui = new firebaseui.auth.AuthUI(firebase.auth());
-    var uiConfig = {
-      callbacks: {
-        signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-          var user = authResult.user;
-          if (authResult.additionalUserInfo.isNewUser) { //if new user
-            db.collection("users").doc(user.uid)
-              .set({ //write to firestore. We are using the UID for the ID in users collection
-                name: user.displayName, //"users" collection
-                email: user.email, //with authenticated user's ID (user.uid)
-                highscore: 0,
-                notificationReminder: 0,
-                notificationType: 0
-              }).then(function () {
-                console.log("New user added to firestore");
-                window.location.assign("index.html"); //re-direct to index.html after signup
-              })
-              .catch(function (error) {
-                console.log("Error adding new user: " + error);
-              });
-            db.collection("history").doc(user.uid)
-              .set({
-                food: 0,
-                drink: 0,
-                shopping: 0,
-                transportation: 0,
-                school: 0,
-                entertainment: 0,
-                work: 0,
-                budget: 0
-              });
-              db.collection("powers").doc(user.uid)
-              .set({
-                power1: 0,
-                power2: 0,
-                power3: 0
-              });
-          } else {
-            return true;
-          }
-          return false;
-        },
-        uiShown: function () {
-          // The widget is rendered.
-          // Hide the loader.
-          document.getElementById("loader").style.display = "";
-        },
-      },
-      // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-      signInFlow: 'popup',
-      signInSuccessUrl: 'index.html',
-      signInOptions: [
-        // Leave the lines as is for the providers you want to offer your users.
-        //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        //firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        //firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-        //firebase.auth.GithubAuthProvider.PROVIDER_ID,
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        //firebase.auth.PhoneAuthProvider.PROVIDER_ID
-      ],
-      // Terms of service url.
-      tosUrl: "<your-tos-url>",
-      // Privacy policy url.
-      privacyPolicyUrl: "<your-privacy-policy-url>",
-    };
-    ui.start("#firebaseui-auth-container", uiConfig);
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous">
   </script>
+  <script src="scripts/saveSettings.js"></script>
+
 </body>
 
 </html>
