@@ -16,12 +16,12 @@ function getSettings() {
                         localStorage.setItem('radio1', 1);
                         localStorage.setItem('radio2', 0);
                         loadedSettings = 1;
-                        //document.getElementById("alert1").checked = true;
+                        //document.getElementById("daily").checked = true;
                     } else {
                         localStorage.setItem('radio2', 1);
                         localStorage.setItem('radio1', 0);
                         loadedSettings = 1;
-                        //document.getElementById("alert2").checked = true;
+                        //document.getElementById("weekly").checked = true;
                     }
 
                 });
@@ -34,19 +34,19 @@ function getSettings() {
                         localStorage.setItem('radio4', 0);
                         localStorage.setItem('radio5', 0);
                         loadedSettings2 = 1;
-                        //document.getElementById("alert3").checked = true;
+                        //document.getElementById("lockscreen").checked = true;
                     } else if (user_setting == 1) {
                         localStorage.setItem('radio3', 0);
                         localStorage.setItem('radio4', 1);
                         localStorage.setItem('radio5', 0);
                         loadedSettings2 = 1;
-                        //document.getElementById("alert4").checked = true;
+                        //document.getElementById("banner").checked = true;
                     } else {
                         localStorage.setItem('radio3', 0);
                         localStorage.setItem('radio4', 0);
                         localStorage.setItem('radio5', 1);
                         loadedSettings2 = 1;
-                        //document.getElementById("alert5").checked = true;
+                        //document.getElementById("notiCenter").checked = true;
                     }
                 }).then(function () {
                     try {
@@ -75,20 +75,19 @@ function getSettings() {
         }
     });
 }
-
 function setSettings() {
     console.log(localStorage.getItem('radio1'));
     if (localStorage.getItem('radio1') == 1) {
-        document.getElementById("alert1").checked = true;
+        document.getElementById("daily").checked = true;
     } else {
-        document.getElementById("alert2").checked = true;
+        document.getElementById("weekly").checked = true;
     }
     if (localStorage.getItem('radio3') == 1) {
-        document.getElementById("alert3").checked = true;
+        document.getElementById("lockscreen").checked = true;
     } else if (localStorage.getItem('radio4') == 1) {
-        document.getElementById("alert4").checked = true;
+        document.getElementById("banner").checked = true;
     } else {
-        document.getElementById("alert5").checked = true;
+        document.getElementById("notiCenter").checked = true;
     }
 }
 
@@ -101,9 +100,10 @@ function setSettings2() {
     console.log(localStorage.getItem('budget'))
     document.getElementById("totalBudget").value = localStorage.getItem('budget');
 }
+
 //updates to the firebase when you press the different radio buttons
-// Notification time period vvvvvvvvvvvvv
-function Alert1() {
+// Notification time period!
+function Daily() {
     firebase.auth().onAuthStateChanged(user => {
         set2 = db.collection("users").doc(user.uid);
         set2.update({
@@ -116,7 +116,7 @@ function Alert1() {
 
 }
 
-function Alert2() {
+function Weekly() {
     firebase.auth().onAuthStateChanged(user => {
         set2 = db.collection("users").doc(user.uid);
         set2.update({
@@ -126,8 +126,9 @@ function Alert2() {
         localStorage.setItem('radio1', 0);
     });
 }
-// Notification type vvvvvvvvvvvvvvvvvvv
-function Alert3() {
+
+// Notification types! 
+function Lockscreen() {
     firebase.auth().onAuthStateChanged(user => {
         set2 = db.collection("users").doc(user.uid);
         set2.update({
@@ -140,7 +141,7 @@ function Alert3() {
     });
 }
 
-function Alert4() {
+function Banner() {
     firebase.auth().onAuthStateChanged(user => {
         set2 = db.collection("users").doc(user.uid);
         set2.update({
@@ -153,7 +154,7 @@ function Alert4() {
     });
 }
 
-function Alert5() {
+function NotiCenter() {
     firebase.auth().onAuthStateChanged(user => {
         set2 = db.collection("users").doc(user.uid);
         set2.update({
@@ -166,12 +167,12 @@ function Alert5() {
     });
 }
 
-function Alert6() {
+function budgetMonth() {
     localStorage.setItem("budgetButton1", 1);
     localStorage.setItem("budgetButton2", 0);
 }
 
-function Alert7() {
+function budgetWeek() {
     localStorage.setItem("budgetButton1", 0);
     localStorage.setItem("budgetButton2", 1);
 }
@@ -181,10 +182,12 @@ function save() {
         set1 = db.collection("users").doc(user.uid);
         if (localStorage.getItem("budgetButton1") == 1) {
             set1.update({
+                //month
                 timePeriod: 0
             });
         } else {
             set1.update({
+                //two weeks
                 timePeriod: 1
             });
         }
