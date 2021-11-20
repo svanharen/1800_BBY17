@@ -78,6 +78,15 @@ h2 {
     color: black !important;
 }
 
+.card {
+    background-color: gray;
+}
+
+.rewardsImages {
+    width: auto;
+    height: 15vw;
+}
+
 /* ------------------------------ */
 .buttonStyle2 {
     background-color: black !important;
