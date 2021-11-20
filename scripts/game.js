@@ -49,6 +49,10 @@ let powers3;
 
 let laserY = 900;
 let shield = false;
+let gun = 0;
+let shoot = 0;
+let bulletX;
+let bulletY;
 
 //import the images that are used
 let image = new Image();
@@ -96,7 +100,12 @@ function start() {
   //reset all the variables that need to be
   backgroundPosition = 0;
   backgroundPosition2 = -800;
+
+  shield = false;
+  gun = 0;
   laserY = 1000;
+  shoot = 0;
+
   enemy = [];
   score = 0;
   ctx = canvas.getContext('2d');
@@ -146,7 +155,7 @@ function setMousePosition(e) {
   scaleY = canvas.height / rect.height;
   mouseX = (e.targetTouches[0].pageX - rect.left) * scaleX; //uses touch to set mouse position
   mouseY = (e.targetTouches[0].pageY - rect.left) * scaleY;
- // mouseButton = 1;
+  // mouseButton = 1;
 }
 
 function mouseDown(e) {
@@ -160,8 +169,8 @@ function mouseDown(e) {
 
 function mouseUp(e) {
   mouseButton = 0;
-  mouseX = -10;
-  mouseY = -10;
+  mouseX = 0;
+  mouseY = 0;
 }
 //---------------------------------------------------------------
 //the loop
@@ -283,6 +292,11 @@ function updateEnemy() {
       enemy.splice(i, 1);
       score++;
     }
+
+    if (bulletY > b.y && bulletY < b.y + b.w && bulletX > b.x && bulletX < b.x + b.w) {
+      shoot = 0;
+      enemy.splice(i, 1);
+    }
   }
 
 }
@@ -325,10 +339,21 @@ shieldLogo.src = './images/shieldlogo.png';
 let shieldImage = new Image();
 shieldImage.src = './images/shield.png';
 
+let gunLogo = new Image();
+gunLogo.src = './images/enableGun.png';
+let gunImage = new Image();
+gunImage.src = './images/gun.png';
+let gunButton = new Image();
+gunButton.src = './images/gunButton.png';
+let bullet = new Image();
+bullet.src = './images/bullet.png';
+
 function updatePowers() {
   //draw and check if uv light button is pushed
-  ctx.drawImage(uvLight, 10, 125, buttonScale, buttonScale);
-  ctx.font = "15px coolFont";
+  if (lighting == false) {
+    ctx.drawImage(uvLight, 10, 125, buttonScale, buttonScale);
+    ctx.font = "15px coolFont";
+  }
   //only print power count if it is loaded
   if (powers1) {
     ctx.fillText(powers1, 15 + buttonScale, 160);
@@ -357,12 +382,15 @@ function updatePowers() {
 
 
   //draw and check if shield button is pushed
-  ctx.drawImage(shieldLogo, 10, 200, buttonScale, buttonScale);
-  ctx.font = "15px coolFont";
-  //only print power count if it is loaded
-  if (powers2) {
-    ctx.fillText(powers2, 15 + buttonScale, 235);
+  if (shield == false) {
+    ctx.drawImage(shieldLogo, 10, 200, buttonScale, buttonScale);
+    ctx.font = "15px coolFont";
+    //only print power count if it is loaded
+    if (powers2) {
+      ctx.fillText(powers2, 15 + buttonScale, 235);
+    }
   }
+
   if (shield) {
     ctx.drawImage(shieldImage, characterX - 20, characterY - 20, characterWidthDisplay + 40, characterHeight + 40);
   }
@@ -373,6 +401,49 @@ function updatePowers() {
       powers2--;
     }
   }
+
+  //draw and check if gun button is pushed
+  if (gun == 0) {
+    ctx.drawImage(gunLogo, 10, 275, buttonScale, buttonScale);
+    ctx.font = "15px coolFont";
+    //only print power count if it is loaded
+    if (powers3) {
+      ctx.fillText(powers3, 15 + buttonScale, 310);
+    }
+  }
+
+  if (gun == 1) {
+    ctx.drawImage(gunImage, characterX, characterY - 42, characterWidthDisplay, characterHeight * 0.75);
+    ctx.drawImage(gunButton, 50, 740, 275, 50);
+    if (mouseX > 50 && mouseX < 325 && mouseY > 740 && mouseY < 790 && shoot == 0 && mouseButton == 1) {
+      shoot = 1;
+      bulletX = characterX + (characterWidth / 2);
+      bulletY = characterY;
+    }
+  } else {
+    shoot = 0;
+  }
+
+  if (shoot == 1) {
+    ctx.drawImage(bullet, bulletX, bulletY, 15, 20);
+    bulletY -= 4;
+  } else {
+    bulletX = -10;
+    bulletY = -10;
+  }
+
+  if (bulletY < 0) {
+    shoot = 0;
+  }
+
+  //check if you click the button
+  if (mouseX > 10 && mouseX < buttonScale + 10 && mouseY > 275 && mouseY < buttonScale + 275 && powers3 > 0) {
+    if (gun == 0) {
+      gun = 1;
+      powers3--;
+    }
+  }
+
 }
 
 function gameOver() {
