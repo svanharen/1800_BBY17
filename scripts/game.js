@@ -353,11 +353,12 @@ function updatePowers() {
   if (lighting == false) {
     ctx.drawImage(uvLight, 10, 125, buttonScale, buttonScale);
     ctx.font = "15px coolFont";
+    if (powers1) {
+      ctx.fillText(powers1, 15 + buttonScale, 160);
+    }
   }
   //only print power count if it is loaded
-  if (powers1) {
-    ctx.fillText(powers1, 15 + buttonScale, 160);
-  }
+
   //do powerup
   if (lighting) {
     console.log("lighting")
