@@ -22,20 +22,35 @@ function getScore() {
 "use strict";
 let canvas;
 let ctx;
+
 let mouseX;
+let mouseY;
 let middlePosX;
 let characterX;
 let characterY = 635;
+
 let mouseButton;
+
 let backgroundPosition = 0;
 let backgroundPosition2 = -800;
+
 let score = 0;
 let enemy = [];
+
 let characterHeight = 80;
 let characterWidth = 35;
 let characterWidthDisplay = 55;
+
 let dead = false;
 
+let powers1;
+let powers2;
+let powers3;
+
+let laserY = 900;
+let shield = false;
+
+//import the images that are used
 let image = new Image();
 image.src = './images/cartoon-rocket.png';
 let off = new Image();
@@ -46,23 +61,42 @@ let backgroundImage2 = new Image();
 backgroundImage2.src = './images/backgroundImage.jpg';
 let gameTitle = new Image();
 gameTitle.src = './images/gameTitle.png';
+
+//import the fonts
 let font = new FontFace('coolFont', 'url(./fonts/FFFFORWA.TTF)')
 
+//first load the fonts, then start the game
 window.onload = font.load().then(start());
 
 //startup things
 function start() {
   document.fonts.add(font);
   canvas = document.getElementById('game');
+
+  //add event listeners for touching the screen
   canvas.addEventListener("touchmove", setMousePosition, false);
   canvas.addEventListener("touchstart", mouseDown, false);
   canvas.addEventListener("touchend", mouseUp, false);
+
+  //disable the menu that shows up if you tap and hold
   canvas.addEventListener("contextmenu", (e) => {
     e.preventDefault();
     return false;
   });
+
+  //load powers
+  firebase.auth().onAuthStateChanged(user => {
+    power_count = db.collection("powers").doc(user.uid).get().then(function (power) {
+      powers1 = power.data().power1;
+      powers2 = power.data().power2;
+      powers3 = power.data().power3;
+    })
+  });
+
+  //reset all the variables that need to be
   backgroundPosition = 0;
   backgroundPosition2 = -800;
+  laserY = 1000;
   enemy = [];
   score = 0;
   ctx = canvas.getContext('2d');
@@ -75,6 +109,7 @@ function start() {
 }
 
 function waiting() {
+  //if you press the mouse, start
   if (mouseButton == 1) {
     window.requestAnimationFrame(loop);
     dead = false;
@@ -83,6 +118,8 @@ function waiting() {
   } else {
     window.requestAnimationFrame(waiting);
   }
+
+  //draw the game images, but they dont do anything
   ctx.drawImage(backgroundImage, 0, backgroundPosition, canvas.width * 1.5, canvas.height);
   ctx.drawImage(off, characterX, characterY, characterWidthDisplay, characterHeight);
   ctx.drawImage(gameTitle, 37.5, 300, 300, 225);
@@ -93,6 +130,7 @@ function waiting() {
 
 
 function loop(timeStamp) {
+  //if you are not dead, request next frame
   if (dead == false) {
     update();
     //request next frame
@@ -104,34 +142,44 @@ function loop(timeStamp) {
 function setMousePosition(e) {
   //set position for moving back and forth
   let rect = canvas.getBoundingClientRect();
-  scaleX = canvas.width / rect.width, // relationship bitmap vs. element for X
-    mouseX = (e.targetTouches[0].pageX - rect.left) * scaleX;
+  scaleX = canvas.width / rect.width; // relationship bitmap vs. element for X
+  scaleY = canvas.height / rect.height;
+  mouseX = (e.targetTouches[0].pageX - rect.left) * scaleX; //uses touch to set mouse position
+  mouseY = (e.targetTouches[0].pageY - rect.left) * scaleY;
+ // mouseButton = 1;
 }
 
 function mouseDown(e) {
   let rect = canvas.getBoundingClientRect();
-  scaleX = canvas.width / rect.width, // relationship bitmap vs. element for X
-    mouseX = (e.targetTouches[0].pageX - rect.left) * scaleX;
+  scaleX = canvas.width / rect.width; // relationship bitmap vs. element for X
+  scaleY = canvas.height / rect.height;
+  mouseX = (e.targetTouches[0].pageX - rect.left) * scaleX; //uses touch to set mouse position
+  mouseY = (e.targetTouches[0].pageY - rect.left) * scaleY;
   mouseButton = 1;
 }
 
 function mouseUp(e) {
   mouseButton = 0;
+  mouseX = -10;
+  mouseY = -10;
 }
 //---------------------------------------------------------------
 //the loop
 function update() {
   //clear the window to not get funky overlay
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
   updateBackground();
 
-  //updates the character
+  //updates the character if touching screen
   if (mouseButton == 1) {
     updateCharacter();
   }
   ctx.drawImage(image, characterX, characterY, characterWidthDisplay, characterHeight);
 
   updateEnemy();
+
+  updatePowers();
 
   updateScore();
 }
@@ -145,7 +193,6 @@ function updateCharacter() {
   }
 }
 
-let gapCap = 20;
 let gap = 0;
 
 let red = new Image();
@@ -155,13 +202,17 @@ green.src = './images/green.png';
 let blue = new Image();
 blue.src = './images/blue.png';
 
+let notTap = 0;
+
 let virusSpeedY = 1;
 let virusSpeedX = 0.15;
 let randomColor = 0;
+let gapAmount;
 
 function updateEnemy() {
   gap++;
-  if (gap % 120 === 0) {
+  gapAmount = (score < 50) ? 120 : 90; //if you get past 50, it gets harder
+  if (gap % gapAmount === 0) {
     randomSize = Math.random() * 75 + 35;
     randomColor = Math.random() * 4;
     randomDirection = Math.random() * 2;
@@ -191,12 +242,17 @@ function updateEnemy() {
     if ((b.x > characterX && (b.x < (characterX + characterWidth))) || (((b.x + b.w) > characterX) && ((b.x + b.w) < (characterX + characterWidth))) || (((b.x + (b.w / 2)) > characterX) && ((b.x + (b.w / 2)) < (characterX + characterWidth)))) {
       //check for collision on y axis
       if ((((b.y + b.h) > (characterY + grace)) && (b.y + b.h) < ((characterY + characterHeight) - grace)) || (((b.y) > (characterY + grace)) && b.y < ((characterY + characterHeight) - grace))) {
-        dead = true;
-        gameOver();
+        //if no shield then die
+        if (!shield) {
+          dead = true;
+          mouseButton = 0;
+          gameOver();
+        } else {
+          shield = false;
+          enemy.splice(i, 1);
+        }
       }
     }
-
-
 
     if (b.y > canvas.height) {
       enemy.splice(i, 1);
@@ -221,6 +277,12 @@ function updateEnemy() {
         ctx.drawImage(blue, b.x -= virusSpeedX, b.y += virusSpeedY, b.w, b.h);
       }
     }
+
+    //check if its hit by the laser
+    if (b.y > laserY) {
+      enemy.splice(i, 1);
+      score++;
+    }
   }
 
 }
@@ -239,15 +301,85 @@ function updateBackground() {
   }
 }
 
+
+let buttonScale = 55;
+let lighting = false;
+
 function updateScore() {
+  //show text for highscore and score
   ctx.textAlign = 'left';
+  ctx.font = "15px coolFont";
   ctx.fillText("Highscore: " + localStorage.getItem('highscore'), 10, 90);
   ctx.fillText("Score: " + score, 10, 110);
   newHS = false;
 }
 let newHS;
 
+let uvLight = new Image();
+uvLight.src = './images/uvlight.png';
+let laser = new Image();
+laser.src = './images/laser.png';
+
+let shieldLogo = new Image();
+shieldLogo.src = './images/shieldlogo.png';
+let shieldImage = new Image();
+shieldImage.src = './images/shield.png';
+
+function updatePowers() {
+  //draw and check if uv light button is pushed
+  ctx.drawImage(uvLight, 10, 125, buttonScale, buttonScale);
+  ctx.font = "15px coolFont";
+  //only print power count if it is loaded
+  if (powers1) {
+    ctx.fillText(powers1, 15 + buttonScale, 160);
+  }
+  //do powerup
+  if (lighting) {
+    console.log("lighting")
+    ctx.drawImage(laser, 0, laserY, canvas.width, 130);
+    laserY -= 3;
+    if (laserY < -100) {
+      lighting = false;
+      laserY = 1000;
+      console.log("done")
+    }
+  } else {
+    laserY = 1000;
+  }
+  //check if you click the button
+  if (mouseX > 10 && mouseX < buttonScale + 10 && mouseY > 125 && mouseY < buttonScale + 125 && powers1 > 0) {
+    if (lighting == false) {
+      lighting = true;
+      powers1--;
+      console.log("start")
+    }
+  }
+
+
+  //draw and check if shield button is pushed
+  ctx.drawImage(shieldLogo, 10, 200, buttonScale, buttonScale);
+  ctx.font = "15px coolFont";
+  //only print power count if it is loaded
+  if (powers2) {
+    ctx.fillText(powers2, 15 + buttonScale, 235);
+  }
+  if (shield) {
+    ctx.drawImage(shieldImage, characterX - 20, characterY - 20, characterWidthDisplay + 40, characterHeight + 40);
+  }
+  //check if you click the button
+  if (mouseX > 10 && mouseX < buttonScale + 10 && mouseY > 200 && mouseY < buttonScale + 200 && powers2 > 0) {
+    if (shield == false) {
+      shield = true;
+      powers2--;
+    }
+  }
+}
+
 function gameOver() {
+
+  //if you click go back to main menu
+  //not tap is to make sure they arent still tapping from the game
+  console.log(notTap);
   if (mouseButton == 1) {
     window.requestAnimationFrame(start);
     mouseButton = 0;
@@ -255,6 +387,7 @@ function gameOver() {
     window.requestAnimationFrame(gameOver);
   }
 
+  //check if you have a new highscore
   if (score > localStorage.getItem('highscore')) {
     localStorage.setItem('highscore', score);
     firebase.auth().onAuthStateChanged(user => {
@@ -265,6 +398,15 @@ function gameOver() {
       newHS = true;
     });
   }
+  //updates powerups in firebase
+  firebase.auth().onAuthStateChanged(user => {
+    setPower = db.collection("powers").doc(user.uid);
+    setPower.update({
+      power1: parseInt(powers1),
+      power2: parseInt(powers2),
+      power3: parseInt(powers3)
+    });
+  });
   //clear the window to not get funky overlay
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(backgroundImage, 0, 0, canvas.width * 1.5, canvas.height);

@@ -71,6 +71,7 @@ function getSettings() {
             budgetDB.get().then(function (budget) {
                 localStorage.setItem('budget', budget.data().budget);
             });
+
         }
     });
 }
