@@ -1,5 +1,5 @@
 let radio;
-let update = 0;
+let updateNum = 0;
 var rating;
 
 function inputRating() {
@@ -36,105 +36,105 @@ function inputRating() {
         }
 
         firebase.auth().onAuthStateChanged(user => {
-                save = db.collection("history").doc(user.uid);
-                switch (radio) {
-                    case 1:
-                        save.get().then(function (update_food) {
-                            update = update_food.data().food;
-                            update = update + parseFloat(document.getElementById("cost").value);
-                            console.log(update);
+            save = db.collection("history").doc(user.uid);
+            switch (radio) {
+                case 1:
+                    save.get().then(function (update_food) {
+                        updateNum = update_food.data().food;
+                        updateNum = updateNum + parseFloat(document.getElementById("cost").value);
+                        console.log(updateNum);
+                    }).then(function () {
+                        save.update({
+                            food: updateNum
                         }).then(function () {
-                            save.update({
-                                food: update
-                            });
-                        }).then(function(){
                             window.location.href = 'rewards.html';
                         });
-                        break;
-                    case 2:
-                        save.get().then(function (update_drink) {
-                            update = update_drink.data().drink;
-                            update = update + parseFloat(document.getElementById("cost").value);
-                            console.log(update);
-                        }).then(function () {
-                            save.update({
-                                drink: update
-                            });
-                        }).then(function(){
-                            window.location.href = 'rewards.html';
-                        });
-                        break;
-                    case 6:
-                        save.get().then(function (update_entertainment) {
-                            update = update_entertainment.data().entertainment;
-                            update = update + parseFloat(document.getElementById("cost").value);
-                            console.log(update);
-                        }).then(function () {
-                            save.update({
-                                entertainment: update
-                            });
-                        }).then(function(){
+                    });
 
-                            window.location.href = 'rewards.html';
-                        });
-                        break;
-                    case 3:
-                        save.get().then(function (update_shopping) {
-                            update = update_shopping.data().shopping;
-                            update = update + parseFloat(document.getElementById("cost").value);
-                            console.log(update);
+                    break;
+                case 2:
+                    save.get().then(function (update_drink) {
+                        updateNum = update_drink.data().drink;
+                        updateNum = updateNum + parseFloat(document.getElementById("cost").value);
+                        console.log(updateNum);
+                    }).then(function () {
+                        save.update({
+                            drink: updateNum
                         }).then(function () {
-                            save.update({
-                                shopping: update
-                            });
-                        }).then(function(){
                             window.location.href = 'rewards.html';
                         });
-                        break;
-                    case 4:
-                        save.get().then(function (update_transportation) {
-                            update = update_transportation.data().transportation;
-                            update = update + parseFloat(document.getElementById("cost").value);
-                            console.log(update);
+                    });
+                    break;
+                case 6:
+                    save.get().then(function (update_entertainment) {
+                        updateNum = update_entertainment.data().entertainment;
+                        updateNum = updateNum + parseFloat(document.getElementById("cost").value);
+                        console.log(updateNum);
+                    }).then(function () {
+                        save.update({
+                            entertainment: updateNum
                         }).then(function () {
-                            save.update({
-                                transportation: update
-                            });
-                        }).then(function(){
                             window.location.href = 'rewards.html';
                         });
-                        break;
-                    case 5:
-                        save.get().then(function (update_school) {
-                            update = update_school.data().school;
-                            update = update + parseFloat(document.getElementById("cost").value);
-                            console.log(update);
+                    });
+                    break;
+                case 3:
+                    save.get().then(function (update_shopping) {
+                        updateNum = update_shopping.data().shopping;
+                        updateNum = updateNum + parseFloat(document.getElementById("cost").value);
+                        console.log(updateNum);
+                    }).then(function () {
+                        save.update({
+                            shopping: updateNum
                         }).then(function () {
-                            save.update({
-                                school: update
-                            });
-                        }).then(function(){
                             window.location.href = 'rewards.html';
                         });
-                        break;
-                    case 7:
-                        save.get().then(function (update_misc) {
-                            update = update_misc.data().misc;
-                            update = update + parseFloat(document.getElementById("cost").value);
-                            console.log(update);
+                    });
+                    break;
+                case 4:
+                    save.get().then(function (update_transportation) {
+                        updateNum = update_transportation.data().transportation;
+                        updateNum = updateNum + parseFloat(document.getElementById("cost").value);
+                        console.log(updateNum);
+                    }).then(function () {
+                        save.update({
+                            transportation: updateNum
                         }).then(function () {
-                            save.update({
-                                misc: update
-                            });
-                        }).then(function(){
                             window.location.href = 'rewards.html';
                         });
-                        break;
+                    });
+                    break;
+                case 5:
+                    save.get().then(function (update_school) {
+                        updateNum = update_school.data().school;
+                        updateNum = updateNum + parseFloat(document.getElementById("cost").value);
+                        console.log(updateNum);
+                    }).then(function () {
+                        save.update({
+                            school: updateNum
+                        }).then(function () {
+                            window.location.href = 'rewards.html';
+                        });
+                    });
+                    break;
+                case 7:
+                    save.get().then(function (update_misc) {
+                        updateNum = update_misc.data().work;
+                        updateNum = updateNum + parseFloat(document.getElementById("cost").value);
+                        console.log(updateNum);
+                    }).then(function () {
+                        save.update({
+                            work: updateNum
+                        }).then(function () {
+                            window.location.href = 'rewards.html';
+                        });
+                    });
+                    break;
 
-                    default:
-                        break;
-                }
-            });
+                default:
+                    break;
+            }
+        });
     } else {
         document.getElementById("submitButton").textContent = "Please fill in all the fields";
     }
