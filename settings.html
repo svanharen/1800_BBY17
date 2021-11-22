@@ -25,6 +25,8 @@
   <title>Notifications</title>
   <link rel="stylesheet" href="styles/my_style.css" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+    integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 </head>
 
 <body>
@@ -61,111 +63,128 @@
     <div class="row justify-content-center">
       <div class="col-12 col-lg-10 col-xl-8 mx-auto">
         <h2 class="h3 mb-4 page-title mt-5">Settings</h2>
-        <div class="my-4">
-          <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active but buttonStyle2" id="notification-tab" data-toggle="tab" href="#contact"
-                role="tab" aria-controls="contact" aria-selected="false">Notifications</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link but buttonStyle2" id="budget-tab" data-toggle="tab" href="./settings-budget.html"
-                role="tab" aria-controls="contact" aria-selected="false">Budget</a>
-            </li>
-          </ul>
-          <h5 class="mb-0 mt-5">Notifications Settings</h5>
-          <p>Select notification you want to receive</p>
-          <hr class="my-4" />
-          <strong class="mb-0">Reminders</strong>
-          <p>Notifications to remind when to input spending data.</p>
-          <div class="list-group mb-5 shadow">
-            <div class="list-group-item buttonStyle1">
-              <div class="row align-items-center">
-                <div class="col">
-                  <strong class="mb-0">Daily Reminder</strong>
-                  <p class="text-muted mb-0 text-black">
-                    Will send a notfication at the same time everyday.
-                  </p>
-                </div>
-                <div class="col-auto">
-                  <div class="custom-control custom-switch">
-                    <input type="radio" class="custom-control-input" id="daily" name="notificationPeriod"
-                      onclick="Daily()" />
-                    <span class="custom-control-label"></span>
-                  </div>
-                </div>
+        <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active but buttonStyle2" id="notification-tab" data-toggle="tab" href="#contact"
+              role="tab" aria-controls="contact" aria-selected="false">Notifications</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link but buttonStyle2" id="budget-tab" data-toggle="tab" href="./settings-budget.html"
+              role="tab" aria-controls="contact" aria-selected="false">Budget</a>
+          </li>
+          <li>
+            <button class="nav-link active but buttonStyle2 btn btn-success toast-button"
+              onclick="Toasty( )">Notification Center</button>
+
+            <div class="toast" id="EpicToast" role="alert" aria-live="assertive" aria-atomic="true"
+              style="position: absolute; top: 100px; right: 18px;">
+              <div class="toast-header">
+                <strong class="mr-auto">Notification</strong>
+
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <div class="toast-body" style="color: black">
+                Hello! Don't forget to record your spending for today!
               </div>
             </div>
-            <div class="list-group-item buttonStyle1">
-              <div class="row align-items-center">
-                <div class="col">
-                  <strong class="mb-0">Weekly Reminder</strong>
-                  <p class="text-muted mb-0 text-black">
-                    Will send a notification once a week.
-                  </p>
-                </div>
-                <div class="col-auto">
-                  <div class="custom-control custom-switch">
-                    <input type="radio" class="custom-control-input" id="weekly" name="notificationPeriod"
-                      onclick="Weekly()" />
-                    <span class="custom-control-label"></span>
-                  </div>
+          </li>
+        </ul>
+        <h5 class="mb-0 mt-5">Notifications Settings</h5>
+        <p>Select notification you want to receive</p>
+        <hr class="my-4" />
+        <strong class="mb-0">Reminders</strong>
+        <p>Notifications to remind when to input spending data.</p>
+        <div class="list-group mb-5 shadow">
+          <div class="list-group-item buttonStyle1">
+            <div class="row align-items-center">
+              <div class="col">
+                <strong class="mb-0">Daily Reminder</strong>
+                <p class="text-muted mb-0 text-black">
+                  Will send a notfication at the same time everyday.
+                </p>
+              </div>
+              <div class="col-auto">
+                <div class="custom-control custom-switch">
+                  <input type="radio" class="custom-control-input" id="daily" name="notificationPeriod"
+                    onclick="Daily()" />
+                  <span class="custom-control-label"></span>
                 </div>
               </div>
             </div>
           </div>
-          <hr class="my-4" />
-          <strong class="mb-0">Notification Type</strong>
-          <p>Please enable the type of system alert you will get.</p>
-          <div class="list-group mb-5 shadow">
-            <div class="list-group-item buttonStyle1">
-              <div class="row align-items-center">
-                <div class="col">
-                  <strong class="mb-0">Lock Sceen Alerts</strong>
-                  <p class="text-muted mb-0 text-black">
-                    Will display on the lock screen of your mobile device.
-                  </p>
-                </div>
-                <div class="col-auto">
-                  <div class="custom-control custom-switch">
-                    <input type="radio" class="custom-control-input" id="lockscreen" checked="" name="notificationType"
-                      onclick="Lockscreen()" />
-                    <span class="custom-control-label"></span>
-                  </div>
+          <div class="list-group-item buttonStyle1">
+            <div class="row align-items-center">
+              <div class="col">
+                <strong class="mb-0">Weekly Reminder</strong>
+                <p class="text-muted mb-0 text-black">
+                  Will send a notification once a week.
+                </p>
+              </div>
+              <div class="col-auto">
+                <div class="custom-control custom-switch">
+                  <input type="radio" class="custom-control-input" id="weekly" name="notificationPeriod"
+                    onclick="Weekly()" />
+                  <span class="custom-control-label"></span>
                 </div>
               </div>
             </div>
-            <div class="list-group-item buttonStyle1">
-              <div class="row align-items-center">
-                <div class="col">
-                  <strong class="mb-0">Banner Alerts</strong>
-                  <p class="text-muted mb-0 text-black">
-                    Will display anytime and anywhere as a banner.
-                  </p>
-                </div>
-                <div class="col-auto">
-                  <div class="custom-control custom-switch">
-                    <input type="radio" class="custom-control-input" id="banner" name="notificationType"
-                      onclick="Banner()" />
-                    <span class="custom-control-label"></span>
-                  </div>
+          </div>
+        </div>
+        <hr class="my-4" />
+        <strong class="mb-0">Notification Type</strong>
+        <p>Please enable the type of system alert you will get.</p>
+        <div class="list-group mb-5 shadow">
+          <div class="list-group-item buttonStyle1">
+            <div class="row align-items-center">
+              <div class="col">
+                <strong class="mb-0">Lock Sceen Alerts</strong>
+                <p class="text-muted mb-0 text-black">
+                  Will display on the lock screen of your mobile device.
+                </p>
+              </div>
+              <div class="col-auto">
+                <div class="custom-control custom-switch">
+                  <input type="radio" class="custom-control-input" id="lockscreen" checked="" name="notificationType"
+                    onclick="Lockscreen()" />
+                  <span class="custom-control-label"></span>
                 </div>
               </div>
             </div>
-            <div class="list-group-item buttonStyle1">
-              <div class="row align-items-center">
-                <div class="col">
-                  <strong class="mb-0">Notification Center Alerts</strong>
-                  <p class="text-muted mb-0 text-black">
-                    Will display in the notification center along with all
-                    other alerts.
-                  </p>
+          </div>
+          <div class="list-group-item buttonStyle1">
+            <div class="row align-items-center">
+              <div class="col">
+                <strong class="mb-0">Banner Alerts</strong>
+                <p class="text-muted mb-0 text-black">
+                  Will display anytime and anywhere as a banner.
+                </p>
+              </div>
+              <div class="col-auto">
+                <div class="custom-control custom-switch">
+                  <input type="radio" class="custom-control-input" id="banner" name="notificationType"
+                    onclick="Banner()" />
+                  <span class="custom-control-label"></span>
                 </div>
-                <div class="col-auto">
-                  <div class="custom-control custom-switch">
-                    <input type="radio" class="custom-control-input" id="notiCenter" name="notificationType"
-                      onclick="NotiCenter()" />
-                    <span class="custom-control-label"></span>
-                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="list-group-item buttonStyle1">
+            <div class="row align-items-center">
+              <div class="col">
+                <strong class="mb-0">Notification Center Alerts</strong>
+                <p class="text-muted mb-0 text-black">
+                  Will display in the notification center along with all
+                  other alerts.
+                </p>
+              </div>
+              <div class="col-auto">
+                <div class="custom-control custom-switch">
+                  <input type="radio" class="custom-control-input" id="notiCenter" name="notificationType"
+                    onclick="NotiCenter()" />
+                  <span class="custom-control-label"></span>
                 </div>
               </div>
             </div>
@@ -173,6 +192,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 
   <!--Bottom nav bar-->
@@ -194,7 +214,12 @@
         </svg></a>
     </div>
   </nav>
-
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+    integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous">
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous">
   </script>
