@@ -57,81 +57,33 @@
       </a>
     </div>
   </nav>
-  <p id="Friends" class="text-center pt-5">Friends</p>
 
-  <div class="btn-group" role="group">
-    <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-      aria-expanded="false">
-      Sort By:
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-      <li><a class="dropdown-item" href="#">Low to High</a></li>
-      <li><a class="dropdown-item" href="#">High to Low</a></li>
-    </ul>
+  <template id="CardTemplate">
+    <div class="card mx-auto mt-3" style="width: 85vw;">
+      <div class="card-body row">
+        <h5 class="card-title col-5" id="name">Name</h5>
+        <p class="card-text col-7" id="score">Score: 100</p>
+      </div>
+    </div>
+  </template>
+
+  <div class="content mx-auto">
+    <p id="Friends" class="text-center pt-5">Friends</p>
+    <div class="btn-group d-block text-center" role="group">
+      <button id="btnGroupDrop1" type="button" class="btn buttonStyle1 dropdown-toggle" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Sort By:
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+        <li><a class="dropdown-item" href="#">Low to High</a></li>
+        <li><a class="dropdown-item" href="#">High to Low</a></li>
+      </ul>
+    </div>
+    <div id="friends-go-here"></div>
+
+
   </div>
 
-  <!--FRIEND!!  -->
-  <div class="container" id="friendList">
-    <div class="row">
-      <div class="col">
-        <img src="./images/friend-placeholder.png" width="65vw" height="auto" />
-      </div>
-      <div class="col">
-        <h1>Sam B</h1>
-        <p>Score: 20000</p>
-      </div>
-    </div>
-    <div class="row pb-3"></div>
-    <div class="row">
-      <div class="col">
-        <img src="./images/friend-placeholder.png" width="65vw" height="auto" />
-      </div>
-      <div class="col">
-        <h1>Sam VH</h1>
-        <p>Score: 12342</p>
-      </div>
-    </div>
-    <div class="row pb-3"></div>
-    <div class="row">
-      <div class="col">
-        <img src="./images/friend-placeholder.png" width="65vw" height="auto" />
-      </div>
-      <div class="col">
-        <h1>Andy</h1>
-        <p>Score: 11346</p>
-      </div>
-    </div>
-    <div class="row pb-3"></div>
-    <div class="row">
-      <div class="col">
-        <img src="./images/friend-placeholder.png" width="65vw" height="auto" />
-      </div>
-      <div class="col">
-        <h1>John</h1>
-        <p>Score: 1113</p>
-      </div>
-    </div>
-    <div class="row pb-3"></div>
-    <div class="row">
-      <div class="col">
-        <img src="./images/friend-placeholder.png" width="65vw" height="auto" />
-      </div>
-      <div class="col">
-        <h1>Joe</h1>
-        <p>Score: 123</p>
-      </div>
-    </div>
-    <div class="row pb-3"></div>
-    <div class="row">
-      <div class="col">
-        <img src="./images/friend-placeholder.png" width="65vw" height="auto" />
-      </div>
-      <div class="col">
-        <h1>Frank</h1>
-        <p>Score: 2</p>
-      </div>
-    </div>
-  </div>
 
   <!--Bottom nav bar-->
   <nav class="navbar fixed-bottom navbar-dark bg-dark">
@@ -157,6 +109,7 @@
     integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous">
   </script>
   <script src="scripts/firebaseAPI.js"></script>
+  <script src="scripts/friends.js"></script>
 </body>
 
 </html>

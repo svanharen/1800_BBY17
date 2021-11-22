@@ -11,6 +11,19 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous" />
 
+  <!-- Firebase 8 CDNs-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
+
   <title>Game</title>
   <link rel="stylesheet" href="styles/my_style.css" />
 </head>
@@ -34,7 +47,7 @@
       <a href="./leaderboard.html"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white"
           class="bi navbar-brand bi-reception-4" viewbox="0 0 16 16">
           <path
-            d="M0 11.5a.5.5 0 s0 1 .5-.5h2a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-5zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-8zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-11z" />
+            d="M0 11.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-5zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-8zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-11z" />
         </svg></a>
       <a href="./index.html">
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="white" class="bi bi-house-fill"
@@ -47,6 +60,12 @@
       </a>
     </div>
   </nav>
+
+  <div class="content">
+    <div>
+      <canvas id="myChartCanvas" width="400" height="400"> </canvas>
+    </div>
+  </div>
 
   <!--Bottom nav bar-->
 
@@ -74,6 +93,98 @@
     integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous">
   </script>
   <script src="scripts/firebaseAPI.js"></script>
+  <script>
+    //-----------------------------------
+    // Use Data from Firestore
+    //-----------------------------------
+    function chartMyData() {
+      var labels = []; //insert task names here
+      var values = []; //insert timespent values here
+      let i = 0;
+      //read data from Firestore
+      firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+          // User is signed in.
+          db.collection("history").doc(user.uid).get()
+            .then(function (doc) {
+              while (i < 7) {
+                let y; //y-axis
+                let x; //x-axis
+                if (i == 0) {
+                  y = doc.data().drink;
+                  x = "Drink";
+                }
+                if (i == 1) {
+                  y = doc.data().entertainment;
+                  x = "Entertainment";
+                }
+                if (i == 2) {
+                  y = doc.data().food;
+                  x = "Food";
+                }
+                if (i == 3) {
+                  y = doc.data().school;
+                  x = "School";
+                }
+                if (i == 4) {
+                  y = doc.data().shopping;
+                  x = "Shopping";
+                }
+                if (i == 5) {
+                  y = doc.data().transportation;
+                  x = "Transportation";
+                }
+                if (i == 6) {
+                  y = doc.data().work;
+                  x = "Work";
+                }
+
+                values.push(y); //timespent display on y
+                labels.push(x); //nickname display on x
+                console.log(labels);
+                console.log(values);
+                i++;
+              }
+            })
+            .then(function () {
+              displayGraph(labels, values); //Display data from arrays
+            })
+        } else {
+          // No user signed in.
+        }
+      })
+    }
+    chartMyData();
+
+
+
+    //---------------------------------------------------------
+    // Simply graph the data provided in the input param arrays
+    //---------------------------------------------------------
+    function displayGraph(xlabels, yvalues) {
+      //define the graphing area
+      var grapharea = document.getElementById('myChart');
+
+      //assemble data for chart
+      const data = {
+        labels: xlabels,
+        datasets: [{
+          label: 'Time Taken to Complete Task',
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          data: yvalues
+        }]
+      };
+      const config = {
+        type: 'bar', //specify the kind of chart
+        data: data,
+        options: {}
+      };
+
+      //launch ie. "create" the chart
+      const myChart = new Chart(myChartCanvas, config)
+    }
+  </script>
 </body>
 
 </html>

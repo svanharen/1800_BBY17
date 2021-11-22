@@ -255,6 +255,15 @@ function updateEnemy() {
         if (!shield) {
           dead = true;
           mouseButton = 0;
+          //updates powerups in firebase
+          firebase.auth().onAuthStateChanged(user => {
+            setPower = db.collection("powers").doc(user.uid);
+            setPower.update({
+              power1: parseInt(powers1),
+              power2: parseInt(powers2),
+              power3: parseInt(powers3)
+            });
+          });
           gameOver();
         } else {
           shield = false;
@@ -470,15 +479,7 @@ function gameOver() {
       newHS = true;
     });
   }
-  //updates powerups in firebase
-  firebase.auth().onAuthStateChanged(user => {
-    setPower = db.collection("powers").doc(user.uid);
-    setPower.update({
-      power1: parseInt(powers1),
-      power2: parseInt(powers2),
-      power3: parseInt(powers3)
-    });
-  });
+
   //clear the window to not get funky overlay
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(backgroundImage, 0, 0, canvas.width * 1.5, canvas.height);
