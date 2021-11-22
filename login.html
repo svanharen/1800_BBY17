@@ -117,6 +117,10 @@
               .catch(function (error) {
                 console.log("Error adding new user: " + error);
               });
+            db.collection("users").doc(user.uid).collection("friends").doc("Sam")
+              .set({
+                Score: 1000
+              });
             db.collection("history").doc(user.uid)
               .set({
                 food: 0,

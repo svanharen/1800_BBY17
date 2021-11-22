@@ -119,12 +119,12 @@ function inputRating() {
                     break;
                 case 7:
                     save.get().then(function (update_misc) {
-                        updateNum = update_misc.data().work;
+                        updateNum = update_misc.data().misc;
                         updateNum = updateNum + parseFloat(document.getElementById("cost").value);
                         console.log(updateNum);
                     }).then(function () {
                         save.update({
-                            work: updateNum
+                            misc: updateNum
                         }).then(function () {
                             window.location.href = 'rewards.html';
                         });
@@ -206,27 +206,27 @@ function getPrize() {
 
 }
 
-//used to reset user data
-// function reset() {
-//     firebase.auth().onAuthStateChanged(user => {
-//         set2 = db.collection("history").doc(user.uid);
-//         set2.set({
-//             food: 0,
-//             drink: 0,
-//             shopping: 0,
-//             transportation: 0,
-//             school: 0,
-//             entertainment: 0,
-//             work: 0,
-//             budget: 0
-//         }).then(function () {
-//             setPower = db.collection("powers").doc(user.uid);
-//             setPower.update({
-//                 power1: 0,
-//                 power2: 0,
-//                 power3: 0
-//             })
-//         })
-//     });
+// used to reset user data
+function reset() {
+    firebase.auth().onAuthStateChanged(user => {
+        set2 = db.collection("history").doc(user.uid);
+        set2.set({
+            food: 0,
+            drink: 0,
+            shopping: 0,
+            transportation: 0,
+            school: 0,
+            entertainment: 0,
+            misc: 0,
+            budget: 0
+        }).then(function () {
+            setPower = db.collection("powers").doc(user.uid);
+            setPower.update({
+                power1: 0,
+                power2: 0,
+                power3: 0
+            })
+        })
+    });
 
-// }
+}
