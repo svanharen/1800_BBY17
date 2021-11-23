@@ -1,6 +1,4 @@
 function getSettings() {
-    let loadedSettings = 0;
-    let loadedSettings2 = 0;
     firebase.auth().onAuthStateChanged(user => {
         // Check if user is signed in:
         if (user) {
