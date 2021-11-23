@@ -38,7 +38,6 @@ h2 {
     font-size: 5vw;
     font-weight: bold;
     color: rgb(131, 131, 131);
-    ;
 }
 
 #center {
@@ -85,6 +84,16 @@ h2 {
 .rewardsImages {
     width: auto;
     height: 15vw;
+}
+
+.card-text2 {
+    vertical-align: middle;
+    text-align: center;
+    font-size: x-large;
+}
+
+#template{
+    height: 12vh;
 }
 
 /* ------------------------------ */

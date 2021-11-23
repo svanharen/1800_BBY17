@@ -121,9 +121,9 @@
               .catch(function (error) {
                 console.log("Error adding new user: " + error);
               });
-            db.collection("users").doc(user.uid).collection("friends").doc("Sam")
+            db.collection("users").doc(user.uid).collection("friends").doc(user.uid)
               .set({
-                Score: 1000
+                Name: user.displayName
               });
             db.collection("history").doc(user.uid)
               .set({
