@@ -206,27 +206,27 @@ function getPrize() {
 
 }
 
-// used to reset user data
-function reset() {
-    firebase.auth().onAuthStateChanged(user => {
-        set2 = db.collection("history").doc(user.uid);
-        set2.set({
-            food: 0,
-            drink: 0,
-            shopping: 0,
-            transportation: 0,
-            school: 0,
-            entertainment: 0,
-            misc: 0,
-            budget: 0
-        }).then(function () {
-            setPower = db.collection("powers").doc(user.uid);
-            setPower.update({
-                power1: 0,
-                power2: 0,
-                power3: 0
-            })
-        })
-    });
+// // used to reset user data
+// function reset() {
+//     firebase.auth().onAuthStateChanged(user => {
+//         set2 = db.collection("history").doc(user.uid);
+//         set2.set({
+//             food: 0,
+//             drink: 0,
+//             shopping: 0,
+//             transportation: 0,
+//             school: 0,
+//             entertainment: 0,
+//             misc: 0,
+//             budget: 0
+//         }).then(function () {
+//             setPower = db.collection("powers").doc(user.uid);
+//             setPower.update({
+//                 power1: 0,
+//                 power2: 0,
+//                 power3: 0
+//             })
+//         })
+//     });
 
-}
+// }
