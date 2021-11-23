@@ -27,7 +27,7 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 
-<body>
+<body class="content">
   <!--Top nav bar-->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
@@ -80,16 +80,18 @@
           <p>Set your budget</p>
           <hr class="my-4" />
           <strong class="mb-0">Time period</strong> <br>
-          <div class="btn-group pt-3" role="group" aria-label="Time Period">
+          <!-- <div class="btn-group pt-3" role="group" aria-label="Time Period">
             <input type="radio" class="btn-check s" name="btnradio" id="month" autocomplete="off" checked
               onclick="budgetMonth()">
             <label class="btn buttonStyle1 btn-success" for="month">1 month</label>
             <input type="radio" class="btn-check" name="btnradio" id="twoweeks" autocomplete="off"
               onclick="budgetWeek()">
             <label class="btn buttonStyle1 btn-success" for="twoweeks">2 weeks</label>
-          </div>
+          </div> -->
+          <p>Reset all you spending data when you get paid again. Remaining money gets moved to next budget.</p>
+          <button type="button" class="btn btn-lg btn-secondary buttonStyle2" onclick="Reset()">Reset</button>
           <hr class="my-4" />
-          <strong class="mb-0">Budget</strong> <br>
+          <strong class="mb-0">Paycheck Amount</strong> <br>
           <div class="pb-3"></div>
           <input type="number" class="form-control buttonStyle1 btn-success" id="totalBudget" placeholder="$$$">
           <div class="pb-5"></div>
@@ -97,8 +99,8 @@
             <button type="button" class="btn btn-lg btn-secondary buttonStyle2" onclick="save()">Save</button>
           </div>
           <p class="text-center" id="saved"></p>
-          <div class="pb-5"></div>
-          <div class="pb-5"></div>
+          <div class="mb-5"></div>
+          <div class="mb-5"></div>
         </div>
       </div>
     </div>

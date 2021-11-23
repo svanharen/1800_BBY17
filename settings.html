@@ -73,29 +73,28 @@
               role="tab" aria-controls="contact" aria-selected="false">Notifications</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link but buttonStyle2" id="budget-tab" data-toggle="tab" href="./settings-budget.html"
+            <a class="nav-link but buttonStyle2" id="budget-tab" data-toggle="tab" onclick="window.location.href='./settings-budget.html';"
               role="tab" aria-controls="contact" aria-selected="false">Budget</a>
           </li>
           <li>
             <button class="nav-link active but buttonStyle2 btn btn-success toast-button"
               onclick="Toasty( )">Notification Center</button>
-
-            <div class="toast" id="EpicToast" role="alert" aria-live="assertive" aria-atomic="true"
-              style="position: absolute; top: 100px; right: 18px;">
-              <div class="toast-header">
-                <strong class="mr-auto">Notification</strong>
-
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-
-              <div class="toast-body" style="color: black">
-                Hello! Don't forget to record your spending for today!
-              </div>
-            </div>
           </li>
         </ul>
+        <div class="toast" id="EpicToast" role="alert" aria-live="assertive" aria-atomic="true"
+          style="position: absolute; top: 100px; right: 18px;">
+          <div class="toast-header">
+            <strong class="mr-auto">Notification</strong>
+
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="toast-body" style="color: black">
+            Hello! Don't forget to record your spending for today!
+          </div>
+        </div>
         <h5 class="mb-0 mt-5">Notifications Settings</h5>
         <p>Select notification you want to receive</p>
         <hr class="my-4" />
@@ -106,7 +105,7 @@
             <div class="row align-items-center">
               <div class="col">
                 <strong class="mb-0">Daily Reminder</strong>
-                <p class="text-muted mb-0 text-black">
+                <p class=" mb-0 text-black">
                   Will send a notfication at the same time everyday.
                 </p>
               </div>
@@ -123,7 +122,7 @@
             <div class="row align-items-center">
               <div class="col">
                 <strong class="mb-0">Weekly Reminder</strong>
-                <p class="text-muted mb-0 text-black">
+                <p class="mb-0 text-black">
                   Will send a notification once a week.
                 </p>
               </div>
@@ -145,7 +144,7 @@
             <div class="row align-items-center">
               <div class="col">
                 <strong class="mb-0">Lock Sceen Alerts</strong>
-                <p class="text-muted mb-0 text-black">
+                <p class=" mb-0 text-black">
                   Will display on the lock screen of your mobile device.
                 </p>
               </div>
@@ -162,7 +161,7 @@
             <div class="row align-items-center">
               <div class="col">
                 <strong class="mb-0">Banner Alerts</strong>
-                <p class="text-muted mb-0 text-black">
+                <p class=" mb-0 text-black">
                   Will display anytime and anywhere as a banner.
                 </p>
               </div>
@@ -179,7 +178,7 @@
             <div class="row align-items-center">
               <div class="col">
                 <strong class="mb-0">Notification Center Alerts</strong>
-                <p class="text-muted mb-0 text-black">
+                <p class=" mb-0 text-black">
                   Will display in the notification center along with all
                   other alerts.
                 </p>
