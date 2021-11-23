@@ -75,6 +75,7 @@ function getSettings() {
         }
     });
 }
+
 function setSettings() {
     console.log(localStorage.getItem('radio1'));
     if (localStorage.getItem('radio1') == 1) {
@@ -92,12 +93,12 @@ function setSettings() {
 }
 
 function setSettings2() {
-    if (localStorage.getItem('budgetButton1') == 1) {
-        document.getElementById("month").checked = true;
-    } else {
-        document.getElementById("twoweeks").checked = true;
-    }
-    console.log(localStorage.getItem('budget'))
+    // if (localStorage.getItem('budgetButton1') == 1) {
+    //     document.getElementById("month").checked = true;
+    // } else {
+    //     document.getElementById("twoweeks").checked = true;
+    // }
+    // console.log(localStorage.getItem('budget'))
     document.getElementById("totalBudget").value = localStorage.getItem('budget');
 }
 
@@ -201,4 +202,66 @@ function save() {
 
     });
     document.getElementById("saved").textContent = "Saved!";
+}
+
+var option = {
+    animation: true,
+    delay: 2000
+};
+
+function Toasty() {
+    var toastHTMLElement = document.getElementById('EpicToast');
+
+    var toastElement = new bootstrap.Toast(toastHTMLElement, option);
+
+    toastElement.show();
+}
+
+// used to reset user data
+function Reset() {
+    firebase.auth().onAuthStateChanged(user => {
+        let newBudget = 0;
+        let drink;
+        let entertainment;
+        let food;
+        let school;
+        let shopping;
+        let transportation;
+        let misc;
+        budgetDB = db.collection("history").doc(user.uid);
+        budgetDB.get().then(function (budget) {
+            newBudget = parseInt(budget.data().budget);
+            drink = parseInt(budget.data().drink);
+            entertainment = parseInt(budget.data().entertainment);
+            food = parseInt(budget.data().food);
+            school = parseInt(budget.data().school);
+            shopping = parseInt(budget.data().shopping);
+            transportation = parseInt(budget.data().transportation);
+            misc = parseInt(budget.data().misc);
+        }).then(function () {
+            newBudget = newBudget - drink - entertainment - food - school - shopping - transportation - misc;
+            console.log(newBudget);
+            if (newBudget < 0) {
+                newBudget = 0;
+            }
+            newBudget += parseInt(localStorage.getItem('budget'));
+            localStorage.setItem('budget', newBudget);
+            firebase.auth().onAuthStateChanged(user => {
+                set2 = db.collection("history").doc(user.uid);
+                console.log("works?");
+                set2.set({
+                    food: 0,
+                    drink: 0,
+                    shopping: 0,
+                    transportation: 0,
+                    school: 0,
+                    entertainment: 0,
+                    misc: 0,
+                    budget: newBudget
+                }).then(function () {
+                    window.location.reload(true);
+                });
+            });
+        });
+    });
 }
