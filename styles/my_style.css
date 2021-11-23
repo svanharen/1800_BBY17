@@ -45,7 +45,7 @@ h2 {
 }
 
 #inputtitle {
-    color: rgb(185, 0, 0);
+    color: rgb(233, 233, 233);
 }
 
 .canvasDiv {
@@ -64,7 +64,7 @@ h2 {
 }
 
 .page-title {
-    color: rgb(185, 0, 0);
+    color: rgb(218, 218, 218);
     ;
 }
 
@@ -94,6 +94,10 @@ h2 {
 
 #template{
     height: 12vh;
+}
+
+.bg-dark {
+    background-color: rgb(34, 34, 34)!important;
 }
 
 /* ------------------------------ */
