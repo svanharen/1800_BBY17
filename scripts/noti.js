@@ -1,5 +1,5 @@
 (async () => {
-    const icon = "./icon.png";
+    const icon = "./images/green.png";
 
     if (Notification.permission === "granted")
     {
