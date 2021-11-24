@@ -12,7 +12,6 @@ function inputRating() {
         stop = 1;
     }
     if (stop == 0) {
-        console.log("hi");
         if (input > 10) {
             input = 10;
         } else if (input < 1) {

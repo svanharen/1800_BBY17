@@ -302,6 +302,7 @@ function updateEnemy() {
       score++;
     }
 
+    //if hit by laser gun
     if (bulletY > b.y && bulletY < b.y + b.w && bulletX > b.x && bulletX < b.x + b.w) {
       shoot = 0;
       enemy.splice(i, 1);
