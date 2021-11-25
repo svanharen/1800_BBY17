@@ -91,12 +91,6 @@ function setSettings() {
 }
 
 function setSettings2() {
-    // if (localStorage.getItem('budgetButton1') == 1) {
-    //     document.getElementById("month").checked = true;
-    // } else {
-    //     document.getElementById("twoweeks").checked = true;
-    // }
-    // console.log(localStorage.getItem('budget'))
     document.getElementById("totalBudget").value = localStorage.getItem('budget');
 }
 
