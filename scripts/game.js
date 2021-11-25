@@ -81,7 +81,6 @@ function start() {
   canvas.addEventListener("touchmove", setMousePosition, false);
   canvas.addEventListener("touchstart", mouseDown, false);
   canvas.addEventListener("touchend", mouseUp, false);
-
   //disable the menu that shows up if you tap and hold
   canvas.addEventListener("contextmenu", (e) => {
     e.preventDefault();
@@ -213,8 +212,8 @@ blue.src = './images/blue.png';
 
 let notTap = 0;
 
-let virusSpeedY = 1;
-let virusSpeedX = 0.15;
+let virusSpeedY = 2;
+let virusSpeedX = 0.3;
 let randomColor = 0;
 let gapAmount;
 
