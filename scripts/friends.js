@@ -24,11 +24,7 @@ function displayCards() {
                                 //update title and text and image
                                 newcard.querySelector('.card-title').innerHTML = name;
                                 newcard.querySelector('.card-text2').innerHTML = score;
-                                //give unique ids to all elements for future use
-                                // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
-                                // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
 
-                                //attach to gallery
                                 document.getElementById("friends-go-here").appendChild(newcard);
                             });
                     });
