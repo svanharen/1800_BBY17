@@ -24,7 +24,7 @@
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
 
-  <title>Game</title>
+  <title>Statistics</title>
   <link rel="stylesheet" href="styles/my_style.css" />
 </head>
 
@@ -215,10 +215,10 @@
                 let y = 0; //y-axis
                 let x; //x-axis
                 let total = parseInt(doc.data().drink) + parseInt(doc.data().entertainment) + parseInt(doc.data()
-                      .food) +
-                    parseInt(doc.data().school) + parseInt(doc.data().shopping) + parseInt(doc.data()
-                      .transportation) +
-                    parseInt(doc.data().misc);
+                    .food) +
+                  parseInt(doc.data().school) + parseInt(doc.data().shopping) + parseInt(doc.data()
+                    .transportation) +
+                  parseInt(doc.data().misc);
                 if (i == 0) {
                   y = total;
                   x = "Used";
