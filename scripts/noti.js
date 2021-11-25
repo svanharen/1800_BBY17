@@ -27,7 +27,7 @@ function notify() {
             // request permission from user
             Notification.requestPermission().then(function(p) {
                if(p === 'granted') {
-                showNotification("My Notification", "Hello World", icon);
+                showNotification("Don't Forget!", "Track Your Spending!", icon);
 
 
 
@@ -52,12 +52,12 @@ function testNotify(){
     } else {
         // check if permission is already granted
         if (Notification.permission === 'granted') {
-            showNotification("My Notification", "Hello World", icon);
+            showNotification("Don't Forget!", "Track Your Spending!", icon);
         } else {
             // request permission from user
             Notification.requestPermission().then(function(p) {
                if(p === 'granted') {
-                showNotification("My Notification", "Hello World", icon);
+                showNotification("Don't Forget!", "Track Your Spending!", icon);
                } else {
                    console.log('User blocked notifications.');
                }
