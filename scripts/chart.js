@@ -1,6 +1,10 @@
     //-----------------------------------
     // Use Data from Firestore
     //-----------------------------------
+    /*
+    Goes through each category of the users history on firebase and adds it to a chart.
+    */
+
     function chartMyData() {
       var labels = []; //insert task names here
       var values = []; //insert timespent values here

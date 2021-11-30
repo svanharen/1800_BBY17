@@ -1,5 +1,8 @@
 const icon = "./images/green.png";
 
+/*
+Does notifications when the day is right.
+*/
 function notify() {
     const today = new Date();
     const lastDate = localStorage.getItem('lastDate');
@@ -45,6 +48,9 @@ function notify() {
     }
 }
 
+/*
+Send a notification as a test for the demonstration.
+*/
 function testNotify(){
 
     if (!window.Notification) {
@@ -68,6 +74,9 @@ function testNotify(){
     }
 }
 
+/*
+Shows the actual notification.
+*/
 function showNotification(title, text) {
     const notification = new Notification(title, {
         body: text,

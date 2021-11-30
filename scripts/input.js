@@ -2,6 +2,10 @@ let radio;
 let updateNum = 0;
 var rating;
 
+/*
+Adds the user input to firebase.
+quite long, but this is the most efficient way, because of firebase.
+*/
 function inputRating() {
     //make sure the rating is valid;
     let input = document.getElementById("cost").value;
@@ -139,6 +143,9 @@ function inputRating() {
     }
 }
 
+/*
+Randomly decides what prize you get based on how you rate your purchase out of 10
+*/
 function getPrize() {
     let powers1 = 0;
     let powers2 = 0;

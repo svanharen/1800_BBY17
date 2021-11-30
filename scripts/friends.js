@@ -1,3 +1,6 @@
+/*
+Displays the cards that have the friends of the user. Gets from firebase.
+*/
 function displayCards() {
     let CardTemplate = document.getElementById("CardTemplate");
     firebase.auth().onAuthStateChanged(user => {
@@ -35,13 +38,13 @@ function displayCards() {
 }
 displayCards();
 
-
+/*
+Add a new friend by searching for thier name in firebase using .where()
+*/
 function addFriend() {
     try {
-        console.log("1");
         let exists = 0;
         var newFriend = document.getElementById("newFriend").value;
-        console.log(newFriend);
         db.collection("users").where("name", "==", newFriend).get()
             .then(function (friend1) {
                 console.log("2");

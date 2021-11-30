@@ -1,4 +1,4 @@
-//GET HIGHSCORE VVVVVVVVVVVVV
+//GET HIGHSCORE
 function getScore() {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
@@ -18,7 +18,7 @@ function getScore() {
 }
 
 
-//GAME VVVVVV
+//GAME
 "use strict";
 let canvas;
 let ctx;
@@ -116,6 +116,7 @@ function start() {
   window.requestAnimationFrame(waiting);
 }
 
+//for the screen of the game before you start playing.
 function waiting() {
   //if you press the mouse, start
   if (mouseButton == 1) {
@@ -136,7 +137,7 @@ function waiting() {
   ctx.fillText("Highscore: " + localStorage.getItem('highscore'), 10, 80);
 }
 
-
+//loop the animation unless you are dead.
 function loop(timeStamp) {
   //if you are not dead, request next frame
   if (dead == false) {
@@ -217,10 +218,12 @@ let virusSpeedX = 0.3;
 let randomColor = 0;
 let gapAmount;
 
+//update the enemy's array
 function updateEnemy() {
   gap++;
   gapAmount = (score < 50) ? 120 : 90; //if you get past 50, it gets harder
   if (gap % gapAmount === 0) {
+    //set random size, color, direction
     randomSize = Math.random() * 75 + 35;
     randomColor = Math.random() * 4;
     randomDirection = Math.random() * 2;
@@ -328,6 +331,9 @@ function updateBackground() {
 let buttonScale = 55;
 let lighting = false;
 
+/*
+updates the score in the top corner.
+*/
 function updateScore() {
   //show text for highscore and score
   ctx.textAlign = 'left';
@@ -357,6 +363,9 @@ gunButton.src = './images/gunButton.png';
 let bullet = new Image();
 bullet.src = './images/bullet.png';
 
+/*
+does the 3 different types of powers
+*/
 function updatePowers() {
   //draw and check if uv light button is pushed
   if (lighting == false) {
@@ -390,7 +399,6 @@ function updatePowers() {
     }
   }
 
-
   //draw and check if shield button is pushed
   if (shield == false) {
     ctx.drawImage(shieldLogo, 10, 200, buttonScale, buttonScale);
@@ -421,7 +429,7 @@ function updatePowers() {
       ctx.fillText(powers3, 15 + buttonScale, 310);
     }
   }
-
+  //shoots the gun
   if (gun == 1) {
     ctx.drawImage(gunImage, characterX, characterY - 42, characterWidthDisplay, characterHeight * 0.75);
     ctx.drawImage(gunButton, 50, 740, 275, 50);
@@ -456,8 +464,10 @@ function updatePowers() {
 
 }
 
+/*
+Runs when you die.
+*/
 function gameOver() {
-
   //if you click go back to main menu
   //not tap is to make sure they arent still tapping from the game
   console.log(notTap);

@@ -1,3 +1,6 @@
+/*
+Loads settings from firebase beforehand so they are ready when you open settings.
+*/
 function getSettings() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if user is signed in:
@@ -73,7 +76,9 @@ function getSettings() {
         }
     });
 }
-
+/*
+Set the settings that were loaded earlier.
+*/
 function setSettings() {
     console.log(localStorage.getItem('radio1'));
     if (localStorage.getItem('radio1') == 1) {
@@ -90,6 +95,9 @@ function setSettings() {
     }
 }
 
+/*
+Sets the settings that were loaded earlier for the other tab
+*/
 function setSettings2() {
     document.getElementById("totalBudget").value = localStorage.getItem('budget');
 }
@@ -160,16 +168,9 @@ function NotiCenter() {
     });
 }
 
-function budgetMonth() {
-    localStorage.setItem("budgetButton1", 1);
-    localStorage.setItem("budgetButton2", 0);
-}
-
-function budgetWeek() {
-    localStorage.setItem("budgetButton1", 0);
-    localStorage.setItem("budgetButton2", 1);
-}
-
+/*
+Saves the current user settings to firebase
+*/
 function save() {
     firebase.auth().onAuthStateChanged(user => {
         set1 = db.collection("users").doc(user.uid);
@@ -201,15 +202,7 @@ var option = {
     delay: 2000
 };
 
-function Toasty() {
-    var toastHTMLElement = document.getElementById('EpicToast');
-
-    var toastElement = new bootstrap.Toast(toastHTMLElement, option);
-
-    toastElement.show();
-}
-
-// used to reset user data
+// used to reset user data once they get paid.
 function Reset() {
     firebase.auth().onAuthStateChanged(user => {
         let newBudget = 0;
