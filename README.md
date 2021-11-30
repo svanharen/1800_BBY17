@@ -10,7 +10,7 @@ This browser based web application to ...
 * Covid Chaos will feature a functional game in the browser that interacts with the tracking of a users spending.
 * The rating as well as amount spent will impact the quality of powerups recieved to play in game.
 * Notifications, Statistics, and Friends are all important features of this motivating spending tracker.
-
+* All images used were free for commercial use.
 
 
 * 
