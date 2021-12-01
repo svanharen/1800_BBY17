@@ -12,9 +12,6 @@ This browser based web application to ...
 * Notifications, Statistics, and Friends are all important features of this motivating spending tracker.
 * All images used were free for commercial use.
 
-
-* 
-
 	
 ## Technologies
 Technologies used for this project:
