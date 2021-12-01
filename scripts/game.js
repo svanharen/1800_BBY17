@@ -367,6 +367,18 @@ bullet.src = './images/bullet.png';
 does the 3 different types of powers
 */
 function updatePowers() {
+
+  updateUVLight();
+
+  updateShield();
+
+  updateBackground();
+}
+
+/*
+updates the powerup the clears the screen of enemies
+*/
+function updateUVLight() {
   //draw and check if uv light button is pushed
   if (lighting == false) {
     ctx.drawImage(uvLight, 10, 125, buttonScale, buttonScale);
@@ -398,7 +410,12 @@ function updatePowers() {
       console.log("start")
     }
   }
+}
 
+/*
+update the shield powerup
+*/
+function updateShield() {
   //draw and check if shield button is pushed
   if (shield == false) {
     ctx.drawImage(shieldLogo, 10, 200, buttonScale, buttonScale);
@@ -419,7 +436,13 @@ function updatePowers() {
       powers2--;
     }
   }
+}
 
+
+/*
+update the gun powerup
+*/
+function updateGun() {
   //draw and check if gun button is pushed
   if (gun == 0) {
     ctx.drawImage(gunLogo, 10, 275, buttonScale, buttonScale);
@@ -461,7 +484,6 @@ function updatePowers() {
       powers3--;
     }
   }
-
 }
 
 /*
@@ -504,6 +526,4 @@ function gameOver() {
   }
   //show navbar
   document.getElementById("navBar").style.display = "block";
-
-
 }
