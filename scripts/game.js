@@ -196,9 +196,9 @@ function update() {
 //sets the character position based on the input
 function updateCharacter() {
   if (mouseX < (canvas.width / 2) && characterX > 0) {
-    characterX -= 2;
+    characterX -= 3;
   } else if (mouseX >= (canvas.width / 2) && characterX <= canvas.width - 55) {
-    characterX += 2;
+    characterX += 3;
   }
 }
 
@@ -221,7 +221,7 @@ let gapAmount;
 //update the enemy's array
 function updateEnemy() {
   gap++;
-  gapAmount = (score < 50) ? 120 : 90; //if you get past 50, it gets harder
+  gapAmount = (score < 50) ? 100 : 70; //if you get past 50, it gets harder
   if (gap % gapAmount === 0) {
     //set random size, color, direction
     randomSize = Math.random() * 75 + 35;
@@ -393,7 +393,7 @@ function updateUVLight() {
   if (lighting) {
     console.log("lighting")
     ctx.drawImage(laser, 0, laserY, canvas.width, 130);
-    laserY -= 3;
+    laserY -= 5;
     if (laserY < -100) {
       lighting = false;
       laserY = 1000;
@@ -467,7 +467,7 @@ function updateGun() {
 
   if (shoot == 1) {
     ctx.drawImage(bullet, bulletX, bulletY, 15, 20);
-    bulletY -= 4;
+    bulletY -= 8;
   } else {
     bulletX = -10;
     bulletY = -10;
