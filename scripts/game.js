@@ -221,7 +221,7 @@ let gapAmount;
 //update the enemy's array
 function updateEnemy() {
   gap++;
-  gapAmount = (score < 50) ? 100 : 70; //if you get past 50, it gets harder
+  gapAmount = (score < 50) ? 120 : 90; //if you get past 50, it gets harder
   if (gap % gapAmount === 0) {
     //set random size, color, direction
     randomSize = Math.random() * 75 + 35;
@@ -372,7 +372,7 @@ function updatePowers() {
 
   updateShield();
 
-  updateBackground();
+  updateGun();
 }
 
 /*
